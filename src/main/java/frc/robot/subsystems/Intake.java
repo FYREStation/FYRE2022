@@ -10,18 +10,20 @@
 */
 
 // Grab package for frc.robot
-package frc.robot.SubsystemPsuedocode;
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 // Imports a series of basic APIs
-import edu.wpi.first.wpilibj.PWMVictorSPX; // Random motor I found, may not be used in final product
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX; // Random motor I found, may not be used in final product
 import edu.wpi.first.wpilibj2.command.SubsystemBase; // Subsystem framework 
-
-// import edu.wpi.first.wpilibj.Timer; // Timer for incremental wheel turning, possibly used?
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.Timer; // Timer for incremental wheel turning, possibly used?
 
 // Copy class Subsystem base to Intake
 public class Intake extends SubsystemBase {
 
-    static PWMVictorSPX motor;
+    private PWMVictorSPX motor;
 
     // A series of booleans that defines if the round / intake should be started. 
     static boolean intakeOn = false;
@@ -42,9 +44,9 @@ public class Intake extends SubsystemBase {
     }
     
     // Runs a motor all the time. Not sure how fast the while loop will run
-    static void simulationPeriodic(){
+    public void simulationPeriodic(){
         while (intakeOn == true){
-            motor.set(0.2);
+            //motor.set(0.2);
         }
     }
 
@@ -58,8 +60,4 @@ public class Intake extends SubsystemBase {
         know how the vision processing would actually work.
     */
 
-    public static void main(String[] args) {
-        Intake.roundStart(true);
-        Intake.intake();
-    }
 }
