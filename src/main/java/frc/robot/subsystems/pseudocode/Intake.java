@@ -42,7 +42,7 @@ public class Intake extends SubsystemBase {
     }
     
     // Runs a motor all the time. Not sure how fast the while loop will run
-    static void intake(){
+    static void simulationPeriodic(){
         while (intakeOn == true){
             motor.set(0.2);
         }
