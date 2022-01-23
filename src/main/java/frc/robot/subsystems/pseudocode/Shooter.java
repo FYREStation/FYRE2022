@@ -35,7 +35,7 @@ public class Shooter extends SubsystemBase {
         return false; 
     }
 
-    static void simulationPeriodic(){
+    static void shootBall(){
         boolean ballSettled = true; // Fake variable for usage. 
         if (Shooter.checkBall(ballSettled) && detectBall){
             motor.set(1); // 1 may not be fully accurate, as I just used a random motor class. 
