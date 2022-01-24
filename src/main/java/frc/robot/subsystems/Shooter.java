@@ -21,10 +21,10 @@ public class Shooter extends SubsystemBase {
   }
 
   public void spinForward(){
-    //TODO: Add actual motors
+    //TO DO: Add actual motors
   }
 
   public void stopSpin(){
-    //TODO: Add actual motors
+    //TO DO: Add actual motors
   }
 }

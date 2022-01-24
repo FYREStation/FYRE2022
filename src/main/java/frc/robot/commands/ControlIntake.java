@@ -11,7 +11,7 @@ import frc.robot.subsystems.Intake;
 public class ControlIntake extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake m_intake;
-
+  
   /**
    * Creates a new ExampleCommand.
    *

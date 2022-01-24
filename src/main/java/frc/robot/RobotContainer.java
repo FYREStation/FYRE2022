@@ -6,9 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+//import edu.wpi.first.wpilibj.simulation.JoystickSim;
+
 import edu.wpi.first.wpilibj.Joystick;
+
 import frc.robot.commands.ControlIntake;
 import frc.robot.subsystems.Intake;
+
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,11 +31,13 @@ public class RobotContainer {
   private final XboxController driverControl = new XboxController(1);
 
   // Declared four joystick buttons for intake purposes. 
-  private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1); // whileHeld: m_intake
-  private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2);
-  private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);
-  private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);
+  private final JoystickButton J1 = new JoystickButton(manipulatorControl, 11); // whileHeld: m_intake (spin intake in)
+  private final JoystickButton J2 = new JoystickButton(manipulatorControl, 12); // whileHeld: m_intake (spin intake out)
+  private final JoystickButton J3 = new JoystickButton(manipulatorControl, 5);  
+  private final JoystickButton J4 = new JoystickButton(manipulatorControl, 3);  
 
+  // Moving axis for intake and outake control (will be utilized for intake spinning!)
+  private final double intakeAxis = manipulatorControl.getRawAxis(3);
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
@@ -54,7 +60,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     J1.whileHeld(new ControlIntake(m_intake));
-
+    J2.whileHeld(new ControlIntake(m_intake));
   }
 
   /**
