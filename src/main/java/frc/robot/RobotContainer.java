@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-import frc.robot.commands.ControlIntake;
-import frc.robot.subsystems.Intake;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -33,8 +33,9 @@ public class RobotContainer {
   // Declared four joystick buttons for intake purposes. 
   private final JoystickButton J1 = new JoystickButton(manipulatorControl, 11); // whileHeld: m_intake (spin intake in)
   private final JoystickButton J2 = new JoystickButton(manipulatorControl, 12); // whileHeld: m_intake (spin intake out)
-  private final JoystickButton J3 = new JoystickButton(manipulatorControl, 5);  
-  private final JoystickButton J4 = new JoystickButton(manipulatorControl, 3);  
+  private final JoystickButton J3 = new JoystickButton(manipulatorControl, 5);  // whileHeld: m_storage (spin storage flywheels in)
+  private final JoystickButton J4 = new JoystickButton(manipulatorControl, 3);  // whileHeld: m_storage (spin storage flywheels out)
+  private final JoystickButton J5 = new JoystickButton(manipulatorControl, 1);  // whenPressed: m_shot (spin shot motor 1 full rotation)
 
   // Moving axis for intake and outake control (will be utilized for intake spinning!)
   private final double intakeAxis = manipulatorControl.getRawAxis(3);
@@ -45,6 +46,8 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   private final Intake m_intake = new Intake();
+  private final Shooter m_storage = new Shooter();
+  private final Shooter m_shot = new Shooter();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -61,6 +64,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     J1.whileHeld(new ControlIntake(m_intake));
     J2.whileHeld(new ControlIntake(m_intake));
+
+    J3.whileHeld(new ControlStorage(m_storage));
+    J4.whileHeld(new ControlStorage(m_storage));
+
+    J5.whenPressed(new ControlShot(m_shot));
   }
 
   /**

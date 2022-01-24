@@ -20,11 +20,26 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
+  // Placeholder functions for OneRevolution
   public void spinForward(){
     //TO DO: Add actual motors
   }
-
+  
   public void stopSpin(){
+    //TO DO: Add actual motors
+  }
+
+  // Storage functions added for ControlStorage
+  public void spinStorageForward(){
+    //TO DO: Add actual motors
+  }
+
+  public void spinStorageBackward(){
+    //TO DO: Add actual motors
+  }
+
+  // Spin functions added for ControlSpin
+  public void shootShot(){
     //TO DO: Add actual motors
   }
 }
