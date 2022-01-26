@@ -4,10 +4,14 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
+  private Spark motorShoot = new Spark(0);
+
   public Shooter() {}
 
   @Override
@@ -22,24 +26,10 @@ public class Shooter extends SubsystemBase {
 
   // Placeholder functions for OneRevolution
   public void spinForward(){
-    //TO DO: Add actual motors
+    //TODO: Add actual motors
   }
   
   public void stopSpin(){
-    //TO DO: Add actual motors
-  }
-
-  // Storage functions added for ControlStorage
-  public void spinStorageForward(){
-    //TO DO: Add actual motors
-  }
-
-  public void spinStorageBackward(){
-    //TO DO: Add actual motors
-  }
-
-  // Spin functions added for ControlSpin
-  public void shootShot(){
-    //TO DO: Add actual motors
+    //TODO: Add actual motors
   }
 }
