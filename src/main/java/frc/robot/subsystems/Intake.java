@@ -15,6 +15,7 @@ public class Intake extends SubsystemBase {
 
     private Spark motorOne = new Spark(Constants.intakeMotorOne); // TODO: Needs to be replaced (constants must be created)
     private Spark motorTwo = new Spark(Constants.intakeMotorTwo);
+    private static double motorOnePower = 0;
 
     public Intake (){
         
@@ -31,7 +32,7 @@ public class Intake extends SubsystemBase {
     }
 
     public void setPower(double power){
-        motor.set(power);
+        motorOnePower = power;
     }
 
 

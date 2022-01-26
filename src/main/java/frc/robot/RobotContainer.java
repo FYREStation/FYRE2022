@@ -12,9 +12,6 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -43,11 +40,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
   private final Intake m_intake = new Intake();
-  private final Shooter m_storage = new Shooter();
-  private final Shooter m_shot = new Shooter();
+  private final Shooter m_shooter = new Shooter();
+  private final Climber m_climber = new Climber();
+
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -62,13 +59,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    J1.whileHeld(new ControlIntake(m_intake));
-    J2.whileHeld(new ControlIntake(m_intake));
-
-    J3.whileHeld(new ControlStorage(m_storage));
-    J4.whileHeld(new ControlStorage(m_storage));
-
-    J5.whenPressed(new ControlShot(m_shot));
+    J1.whileHeld(new ElevatorPower(m_climber));
   }
 
   /**

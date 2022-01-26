@@ -10,9 +10,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private Spark motorShoot = new Spark(0);
+  private Spark motorShoot = new Spark(Constants.shooterMotor);
 
-  public Shooter() {}
+  public Shooter() {
+    
+  }
 
   @Override
   public void periodic() {

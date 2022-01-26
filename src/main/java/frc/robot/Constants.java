@@ -20,6 +20,7 @@ public final class Constants {
     public static int climberMotorOne;
     public static int climberMotorTwo;
     public static int climberMotorThree;
+    public static int climberMotorFour;
     public static int leftDriveMotors;
     public static int rightDriveMotors;
 
