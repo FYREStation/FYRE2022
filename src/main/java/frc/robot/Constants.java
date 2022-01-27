@@ -16,13 +16,17 @@ public final class Constants {
     //Motor Controller Ports
     public static int intakeMotorOne;
     public static int intakeMotorTwo;
+
     public static int shooterMotor;
+
     public static int climberMotorOne;
     public static int climberMotorTwo;
     public static int climberMotorThree;
     public static int climberMotorFour;
+
     public static int leftDriveMotors;
     public static int rightDriveMotors;
+    public static boolean invertedDrive;
 
     //TODO: Add sensors (gyro, encoder, and cameras for example)
 }
