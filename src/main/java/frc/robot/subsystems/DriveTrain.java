@@ -10,7 +10,7 @@ import frc.robot.Constants; // Constants folder for motor variables
 import edu.wpi.first.wpilibj.drive.DifferentialDrive; 
 // import edu.wpi.first.wpilibj.Encoder;
 
-import edu.wpi.first.wpilibj.motorcontrol.*; // Motor control folder (MotorController + MotorControllerGroup)
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup; // Motor control folder (MotorController + MotorControllerGroup)
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase; // Subsystem framework
@@ -54,7 +54,7 @@ public class DriveTrain extends SubsystemBase {
 
     // Two drive functions for arcade drive method and tank drive method. 
     public void arcadeDrive (double move_speed, double rot_speed){
-        if (Constants.invertedDrive){
+        if (Constants.invertedDrive) {
             differential_drive.arcadeDrive(move_speed, rot_speed);
         } else {
             differential_drive.arcadeDrive(-move_speed, rot_speed);
@@ -62,16 +62,16 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void tankDrive (double move_speed_l, double move_speed_r) {
-        if(Constants.invertedDrive){            
+        if (Constants.invertedDrive) {            
             differential_drive.tankDrive(move_speed_l, move_speed_r);
-        }else{
+        } else {
             differential_drive.tankDrive(-move_speed_l, -move_speed_r);
         }    
     }
 
     // Periodic commands. 
     @Override
-    public void periodic (){
+    public void periodic() {
         
     }
 
