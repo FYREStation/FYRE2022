@@ -28,11 +28,11 @@ public class RobotContainer {
   private final XboxController driverControl = new XboxController(1);
 
   // Declared four joystick buttons for intake purposes. 
-  private final JoystickButton J1 = new JoystickButton(manipulatorControl, 11); // whileHeld: m_intake (spin intake in)
-  private final JoystickButton J2 = new JoystickButton(manipulatorControl, 12); // whileHeld: m_intake (spin intake out)
+  private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1); // whileHeld: m_intake (spin intake in)
+  private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); // whileHeld: m_intake (spin intake out)
   private final JoystickButton J3 = new JoystickButton(manipulatorControl, 5);  // whileHeld: m_storage (spin storage flywheels in)
   private final JoystickButton J4 = new JoystickButton(manipulatorControl, 3);  // whileHeld: m_storage (spin storage flywheels out)
-  private final JoystickButton J5 = new JoystickButton(manipulatorControl, 1);  // whenPressed: m_shot (spin shot motor 1 full rotation)
+  private final JoystickButton J5 = new JoystickButton(manipulatorControl, 6);  // whenPressed: m_shot (spin shot motor 1 full rotation)
 
   // Moving axis for intake and outake control (will be utilized for intake spinning!)
   private final double intakeAxis = manipulatorControl.getRawAxis(3);
@@ -60,6 +60,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     J1.whileHeld(new ElevatorPower(m_climber));
+    J2.whenPressed(new ControlShot(m_shooter));
   }
 
   /**

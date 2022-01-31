@@ -8,14 +8,15 @@ package frc.robot.subsystems;
 // Imports a series of basic APIs
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; // Subsystem framework 
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 // Copy class Subsystem base to Intake
 public class Intake extends SubsystemBase {
 
-    private Spark motorOne = new Spark(Constants.intakeMotorOne); // TODO: Needs to be replaced (constants must be created)
-    private Spark motorTwo = new Spark(Constants.intakeMotorTwo);
-    private static double motorOnePower = 0;
+    private Relay motorOne = new Relay(Constants.intakeMotorOne);
+    private Relay motorTwo = new Relay(Constants.intakeMotorTwo);
 
     public Intake (){
         
@@ -31,9 +32,20 @@ public class Intake extends SubsystemBase {
 
     }
 
-    public void setPower(double power){
-        motorOnePower = power;
+    public void runIntakeHold(){
+        motorOne.set(Value.kForward);
     }
 
+    public void stopIntakeHold(){
+        motorOne.set(Value.kOff);
+    }
+
+    public void runShootHold(){
+        motorTwo.set(Value.kForward);
+    }
+
+    public void stopShootHold(){
+        motorTwo.set(Value.kOff);
+    }
 
 }

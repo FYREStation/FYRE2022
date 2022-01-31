@@ -28,14 +28,14 @@ public class OneRevolution extends CommandBase {
   @Override
   public void initialize() {
     //TODO: Condition needs to be the correct position
-    while(true){
-      m_shooter.spinForward();
-    }
-  }
+    double distance = m_shooter.getDistance();
+    double destination = distance + 40; //TODO set whatever the distance is for a revolution
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() { 
+    while(distance < destination){
+      m_shooter.spinForward();
+      distance = m_shooter.getDistance();
+    }
+    m_shooter.stopSpin();
   }
 
   // Called once the command ends or is interrupted.

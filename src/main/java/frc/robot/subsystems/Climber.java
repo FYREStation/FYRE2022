@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 public class Climber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   VictorSPX hookMotor = new VictorSPX(Constants.climberMotorTwo);
-  VictorSPX elevatorMotor = new VictorSPX(Constants.climberMotorThree);
+  Spark elevatorMotor = new Spark(Constants.climberMotorThree);
   VictorSPX articulateMotorOne = new VictorSPX(Constants.climberMotorOne);
   VictorSPX articulateMotorTwo = new VictorSPX(Constants.climberMotorFour);
 
@@ -48,10 +49,10 @@ public class Climber extends SubsystemBase {
     elevatorPower = power;
   }
   public void spinElevator(){
-    elevatorMotor.set(ControlMode.PercentOutput, 1.0);
+    elevatorMotor.set(0.7);
   }
 
   public void stopElevator(){
-    elevatorMotor.set(ControlMode.PercentOutput, 0.0);
+    elevatorMotor.set(0.0);
   }
 }

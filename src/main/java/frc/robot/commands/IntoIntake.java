@@ -5,41 +5,34 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Intake;
 
 /** An example command that uses an example subsystem. */
-public class ControlShot extends CommandBase {
+public class IntoIntake extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Shooter m_shot;
+  private final Intake m_intake;
   
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ControlShot(Shooter subsystem) {
-    m_shot = subsystem;
+  public IntoIntake(Intake subsystem) {
+    m_intake = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    for (int i = 0; i < 40; i++){
-      m_shot.spinForward();
-      System.out.println("I is: "+ i);
-    }
-  }
-
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_intake.runIntakeHold();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_shot.stopSpin();
+    m_intake.stopIntakeHold();
   }
 
   // Returns true when the command should end.

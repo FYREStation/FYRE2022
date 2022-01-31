@@ -14,19 +14,26 @@ package frc.robot;
  */
 public final class Constants {
     //Motor Controller Ports
-    public static int intakeMotorOne;
-    public static int intakeMotorTwo;
+    //Intake Ports
+    public static int intakeMotorOne = 3;
+    public static int intakeMotorTwo = 1;
 
-    public static int shooterMotor;
+    //Shooter Ports
+    public static int shooterMotor = 2;
+    public static int shooterEncoder = 0;
 
-    public static int climberMotorOne;
-    public static int climberMotorTwo;
-    public static int climberMotorThree;
-    public static int climberMotorFour;
+    //Climber Ports
+    public static int climberMotorOne = 5;
+    public static int climberMotorTwo = 4;
+    public static int climberMotorThree = 0;
+    public static int climberMotorFour = 6;
 
-    public static int leftDriveMotors;
-    public static int rightDriveMotors;
-    public static boolean invertedDrive;
+    //DriveTrain Ports
+    public static int leftDriveMotorA = 0;
+    public static int leftDriveMotorB = 1;
+    public static int rightDriveMotorA = 2;
+    public static int rightDriveMotorB = 3;
+    public static boolean invertedDrive = true;
 
     //TODO: Add sensors (gyro, encoder, and cameras for example)
 }
