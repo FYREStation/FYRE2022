@@ -1,22 +1,24 @@
-package blueballdetection;
+package frc.robot;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.HashMap;
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.stream.Collectors;
+//import java.util.HashMap;
 
-import edu.wpi.first.wpilibj.vision.VisionPipeline;
+import edu.wpi.first.vision.VisionPipeline;
 
 import org.opencv.core.*;
-import org.opencv.core.Core.*;
-import org.opencv.features2d.FeatureDetector;
-import org.opencv.imgcodecs.Imgcodecs;
+//import org.opencv.core.Core.*;
+import org.opencv.features2d.FastFeatureDetector;
+//import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
-import org.opencv.objdetect.*;
+//import org.opencv.objdetect.*;
+
+
 
 /**
 * GripPipeline class.
@@ -33,7 +35,7 @@ public class GripPipeline implements VisionPipeline {
 	private Mat cvErodeOutput = new Mat();
 	private Mat maskOutput = new Mat();
 	private MatOfKeyPoint findBlobsOutput = new MatOfKeyPoint();
-
+	
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 	}
@@ -48,7 +50,7 @@ public class GripPipeline implements VisionPipeline {
 		double[] hsvThresholdSaturation = {107.77877697841726, 235.68181818181816};
 		double[] hsvThresholdValue = {55.03597122302158, 255.0};
 		hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
-
+		
 		// Step Blur0:
 		Mat blurInput = hsvThresholdOutput;
 		BlurType blurType = BlurType.get("Median Filter");
@@ -77,7 +79,7 @@ public class GripPipeline implements VisionPipeline {
 		findBlobs(findBlobsInput, findBlobsMinArea, findBlobsCircularity, findBlobsDarkBlobs, findBlobsOutput);
 
 	}
-
+		
 	/**
 	 * This method is a generated getter for the output of a HSV_Threshold.
 	 * @return Mat output from HSV_Threshold.
@@ -246,7 +248,7 @@ public class GripPipeline implements VisionPipeline {
 	 */
 	private void findBlobs(Mat input, double minArea, double[] circularity,
 		Boolean darkBlobs, MatOfKeyPoint blobList) {
-		FeatureDetector blobDet = FeatureDetector.create(FeatureDetector.SIMPLEBLOB);
+		FastFeatureDetector blobDet = FastFeatureDetector.create(FastFeatureDetector.TYPE_9_16);
 		try {
 			File tempFile = File.createTempFile("config", ".xml");
 
