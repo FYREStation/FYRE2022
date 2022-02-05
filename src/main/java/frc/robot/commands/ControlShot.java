@@ -26,15 +26,14 @@ public class ControlShot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    for (int i = 0; i < 40; i++){
-      m_shot.spinForward();
-      System.out.println("I is: "+ i);
-    }
+   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_shot.spinForward();
+  }
 
   // Called once the command ends or is interrupted.
   @Override

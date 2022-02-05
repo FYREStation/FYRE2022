@@ -23,7 +23,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Left Drive Encoder", shooterEncoder.getDistance());
+    SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getDistance());
   }
 
   @Override

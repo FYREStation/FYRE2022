@@ -26,13 +26,13 @@ public class DriveTrain extends SubsystemBase {
     /* leftDriveMotors + rightDriveMotors are empty variables in Constants. Once we can start
     messing with actual motors, PLEASE update them / this code!! */
     private final Spark left_motorA = new Spark(Constants.leftDriveMotorA);
-    private final Spark left_motorB = new Spark(Constants.leftDriveMotorB);
+    //private final Spark left_motorB = new Spark(Constants.leftDriveMotorB);
 
     private final Spark right_motorA = new Spark(Constants.rightDriveMotorA);
-    private final Spark right_motorB = new Spark(Constants.rightDriveMotorB);
+    //private final Spark right_motorB = new Spark(Constants.rightDriveMotorB);
 
-    private final MotorControllerGroup left_motors = new MotorControllerGroup(left_motorA, left_motorB);
-    private final MotorControllerGroup right_motors = new MotorControllerGroup(right_motorA, right_motorB);
+    private final MotorControllerGroup left_motors = new MotorControllerGroup(left_motorA);
+    private final MotorControllerGroup right_motors = new MotorControllerGroup(right_motorA);
 
     private final DifferentialDrive differential_drive = new DifferentialDrive(left_motors, right_motors);
 
@@ -40,16 +40,16 @@ public class DriveTrain extends SubsystemBase {
     // https://first.wpi.edu/wpilib/allwpilib/docs/release/java/edu/wpi/first/wpilibj/MotorSafety.html#setExpiration(double) */
 
     private static int expiration_dur = 99999; // Change this variable to affect expiration time. 
-    private static boolean safety_toggle = true; // Change this variable to toggle safety mode. 
+    private static boolean safety_toggle = false; // Change this variable to toggle safety mode. 
     
     public DriveTrain (){
          // Not fully sure if we need these. Kept them anyway.
         
-             left_motor.setExpiration(expiration_dur);
-             right_motor.setExpiration(expiration_dur);
+             left_motorA.setExpiration(expiration_dur);
+             right_motorA.setExpiration(expiration_dur);
 
-             left_motor.setSafetyEnabled(safety_toggle);
-             right_motor.setSafetyEnabled(safety_toggle);
+             left_motorA.setSafetyEnabled(safety_toggle);
+             right_motorA.setSafetyEnabled(safety_toggle);
          
 
          differential_drive.setExpiration(expiration_dur);

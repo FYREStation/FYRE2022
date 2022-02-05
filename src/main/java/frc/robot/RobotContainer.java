@@ -43,11 +43,20 @@ public class RobotContainer {
   private final Intake m_intake = new Intake();
   private final Shooter m_shooter = new Shooter();
   private final Climber m_climber = new Climber();
+  private final DriveTrain m_drivetrain = new DriveTrain();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
+    m_drivetrain.setDefaultCommand(new Driving(m_drivetrain,
+      (driverControl.getRawAxis(0)),
+      (driverControl.getRawAxis(1)),
+      (driverControl.getRawAxis(2)),
+      (driverControl.getRawAxis(3))
+    ));
+
     // Configure the button bindings
     configureButtonBindings();
   }

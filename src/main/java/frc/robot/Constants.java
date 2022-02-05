@@ -13,6 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static double throttle = 0;
     //Motor Controller Ports
     //Intake Ports
     public static int intakeMotorOne = 3;
@@ -20,7 +21,8 @@ public final class Constants {
 
     //Shooter Ports
     public static int shooterMotor = 2;
-    public static int shooterEncoder = 0;
+    public static int shooterEncoderA = 0;
+    public static int shooterEncoderB = 1;
 
     //Climber Ports
     public static int climberMotorOne = 5;
