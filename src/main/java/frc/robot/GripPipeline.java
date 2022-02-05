@@ -294,8 +294,8 @@ public class GripPipeline implements VisionPipeline {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		blobDet.detect(input, blobList);
+	
 	}
 
 
