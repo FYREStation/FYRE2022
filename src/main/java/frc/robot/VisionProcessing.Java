@@ -45,12 +45,8 @@ public class VisionProcessing extends TimedRobot {
     Mat image = Bazinga.findBlobsOutput();
     UsbCamera camera = CameraServer.startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    //CvSink cvSink = CameraServer.getVideo();
-
-    Bazinga.process(image);
-    
+    public Object image = Bazinga.process(image); 
   }
-
   //@Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -59,8 +55,6 @@ public class VisionProcessing extends TimedRobot {
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
-
-
 
   }
 }

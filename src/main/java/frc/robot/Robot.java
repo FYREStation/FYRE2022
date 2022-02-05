@@ -8,26 +8,57 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.vision.VisionThread;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  
+  private static final int IMG_WIDTH = 320;
+  private static final int IMG_HEIGHT = 240;
 
+  private static VisionThread visionThread;
+  public double centerX = 0.0;
+  public DifferentialDrive drive;
+
+  public final Object imgLock = new Object();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    UsbCamera camera = CameraServer.startAutomaticCapture();
+    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+
+    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+      if (!pipeline.filterContoursOutput().isEmpty()) {
+          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+          synchronized (imgLock) {
+              centerX = r.x + (r.width / 2);
+          }
+      }
+  });
+  visionThread.start();
   }
 
   /**
