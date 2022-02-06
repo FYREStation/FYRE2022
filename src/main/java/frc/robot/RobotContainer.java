@@ -53,8 +53,8 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(new Driving(m_drivetrain,
       (driverControl.getRawAxis(0)),
       (driverControl.getRawAxis(1)),
-      (driverControl.getRawAxis(2)),
-      (driverControl.getRawAxis(3))
+      (driverControl.getRawAxis(4)),
+      (driverControl.getRawAxis(5))
     ));
 
     // Configure the button bindings

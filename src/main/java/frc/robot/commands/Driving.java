@@ -21,17 +21,17 @@ public class Driving extends CommandBase {
 	private DriveTrain drive_train;
 	private double move_Speed;
 	private double rotate_Speed;
-	private double XJoyStick;
-	private double YJoyStick;
+	private double XLeftJoystick;
+	private double YLeftJoystick;
 	private double XRightJoyStick;
 	private double YRightJoyStick;
 
-    public Driving(DriveTrain m_drivetrain, double d, double e, double f, double g) {
+    public Driving(DriveTrain m_drivetrain, double xLeft, double yLeft, double xRight, double yRight) {
         drive_train = m_drivetrain;
-		XJoyStick = d;
-		YJoyStick = e;
-		XRightJoyStick = f;
-		YRightJoyStick = g;
+		XLeftJoystick = xLeft;
+		YLeftJoystick = yLeft;
+		XRightJoyStick = xRight;
+		YRightJoyStick = yRight;
 		
 		addRequirements(drive_train);
     }
@@ -50,10 +50,10 @@ public class Driving extends CommandBase {
 			if(Constants.isTank){
 				xValue=XRightJoyStick;	
 			}else{
-				xValue=XJoyStick;
+				xValue=XLeftJoystick;
 			}
 
-			yValue = YJoyStick;
+			yValue = YLeftJoystick;
 	
 			if(yValue < 0.2 && yValue > -0.2){
 				yValue = 0.0;

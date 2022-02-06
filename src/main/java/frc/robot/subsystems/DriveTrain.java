@@ -26,10 +26,7 @@ public class DriveTrain extends SubsystemBase {
     /* leftDriveMotors + rightDriveMotors are empty variables in Constants. Once we can start
     messing with actual motors, PLEASE update them / this code!! */
     private final Spark left_motorA = new Spark(Constants.leftDriveMotorA);
-    //private final Spark left_motorB = new Spark(Constants.leftDriveMotorB);
-
     private final Spark right_motorA = new Spark(Constants.rightDriveMotorA);
-    //private final Spark right_motorB = new Spark(Constants.rightDriveMotorB);
 
     private final MotorControllerGroup left_motors = new MotorControllerGroup(left_motorA);
     private final MotorControllerGroup right_motors = new MotorControllerGroup(right_motorA);
@@ -45,11 +42,11 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain (){
          // Not fully sure if we need these. Kept them anyway.
         
-             left_motorA.setExpiration(expiration_dur);
-             right_motorA.setExpiration(expiration_dur);
+        left_motorA.setExpiration(expiration_dur);
+        right_motorA.setExpiration(expiration_dur);
 
-             left_motorA.setSafetyEnabled(safety_toggle);
-             right_motorA.setSafetyEnabled(safety_toggle);
+        left_motorA.setSafetyEnabled(safety_toggle);
+        right_motorA.setSafetyEnabled(safety_toggle);
          
 
          differential_drive.setExpiration(expiration_dur);
