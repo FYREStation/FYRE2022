@@ -17,7 +17,9 @@ public class Shooter extends SubsystemBase {
   private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
   
   public Shooter() {
-    shooterEncoder.setDistancePerPulse(1/2048.0);
+    shooterEncoder.reset();
+    shooterEncoder.setDistancePerPulse(2048.0);
+    
   }
 
   @Override
@@ -33,7 +35,7 @@ public class Shooter extends SubsystemBase {
 
   // Placeholder functions for OneRevolution
   public void spinForward(){
-    motorShoot.set(1.0);
+    motorShoot.set(0.6);
   }
   
   public void stopSpin(){

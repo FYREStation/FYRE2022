@@ -29,7 +29,7 @@ public class OneRevolution extends CommandBase {
   public void initialize() {
     //TODO: Condition needs to be the correct position
     double distance = m_shooter.getDistance();
-    double destination = distance + 40; //TODO set whatever the distance is for a revolution
+    double destination = distance + 1;
 
     while(distance < destination){
       m_shooter.spinForward();
