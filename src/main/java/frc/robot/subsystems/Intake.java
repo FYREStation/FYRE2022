@@ -31,6 +31,10 @@ public class Intake extends SubsystemBase {
     public void simulationPeriodic(){
 
     }
+  
+    public void setPower(double power){
+        //motor.set(power);
+    }
 
     public void runIntakeHold(){
         motorOne.set(Value.kForward);
