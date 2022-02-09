@@ -11,14 +11,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ElevatorPower extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Climber m_Climber;
-
+  String sectionPower;
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ElevatorPower(Climber subsystem) {
+  public ElevatorPower(Climber subsystem,String section) {
     m_Climber = subsystem;
+    sectionPower = section;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -32,7 +33,20 @@ public class ElevatorPower extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Climber.spinElevator();
+    switch (sectionPower) {
+      case "Hook":
+        m_Climber.spinHook();
+        break;
+      case "Articulate":
+        m_Climber.spinArticulate();
+        break;
+      case "Elevator":
+        m_Climber.spinElevator();
+        break;
+      default:
+        m_Climber.stopEverything();
+        break;
+    }
   }
 
   // Called once the command ends or is interrupted.

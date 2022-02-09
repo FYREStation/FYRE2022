@@ -24,12 +24,14 @@ public class Climber extends SubsystemBase {
   double elevatorPower = 0;
 
   public Climber() {
-
+    //TODO make sure to set reverse motors
+    
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+ 
   }
 
   @Override
@@ -49,10 +51,35 @@ public class Climber extends SubsystemBase {
     elevatorPower = power;
   }
   public void spinElevator(){
-    elevatorMotor.set(0.7);
+    elevatorMotor.set(elevatorPower);
+  }
+  public void spinArticulate (){
+    articulateMotorOne.set(ControlMode.PercentOutput, articulatePower);
+    articulateMotorTwo.set(ControlMode.PercentOutput, articulatePower);
+  }
+  public void spinHook(){
+    hookMotor.set(ControlMode.PercentOutput, hookPower);
   }
 
   public void stopElevator(){
     elevatorMotor.set(0.0);
+  }
+
+  public void stopHook(){
+    hookMotor.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  public void stopArticulate(){
+    articulateMotorOne.set(ControlMode.PercentOutput, 0.0);
+    articulateMotorTwo.set(ControlMode.PercentOutput, 0.0);
+  }
+
+  public void stopEverything(){
+    hookPower = 0.0;
+    elevatorPower = 0.0;
+    articulatePower = 0.0;
+    stopElevator();
+    stopHook();
+    stopArticulate();
   }
 }

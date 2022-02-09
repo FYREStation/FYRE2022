@@ -64,7 +64,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    J1.whileHeld(new ElevatorPower(m_climber));
+    J1.whileHeld(new ElevatorPower(m_climber, "Hook"));
     J2.whenPressed(new ControlShot(m_shooter));
   }
 
