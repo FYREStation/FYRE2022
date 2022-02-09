@@ -10,8 +10,18 @@ import org.opencv.imgproc.Imgproc;
 import edu.wpi.first.cscore.UsbCamera;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
+
+/*
+
+*/
+
+
+
 
 //Class to handle all of the calculations
 public class VisionProcessing extends TimedRobot {
@@ -27,20 +37,36 @@ public class VisionProcessing extends TimedRobot {
     public final Object imgLock = new Object();
     //Defining a function to calculate all of the vectors used
     public void get_vision_vectors() {
-    //Getting the input from the camera
-    UsbCamera camera = CameraServer.startAutomaticCapture();
-    camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
-    //Calculations
-    visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
-      if (!pipeline.filterContoursOutput().isEmpty()) {
-          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-          synchronized (imgLock) {
-              radius = r.width;
-              centerX = r.x + (r.width / 2);
-              centery = r.y + (r.height / 2);
-          }
-      }
-  });
-  visionThread.start();
-  }
+        //Getting the input from the camera
+        UsbCamera camera = CameraServer.startAutomaticCapture();
+        camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
+        //Deciding what aliance we are on and calculating the vectors
+        if(DriverStation.getAlliance().toString() == "RED") {
+            visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
+            if (!pipeline.filterContoursOutput().isEmpty()) {
+                Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+                synchronized (imgLock) {
+                    radius = r.width;
+                    centerX = r.x + (r.width / 2);
+                    centery = r.y + (r.height / 2);
+                }
+            }
+            visionThread.start();
+        });
+        } else {
+            visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
+                if (!pipeline.filterContoursOutput().isEmpty()) {
+                    Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+                    synchronized (imgLock) {
+                        radius = r.width;
+                        centerX = r.x + (r.width / 2);
+                        centery = r.y + (r.height / 2);
+                    }
+                }
+                visionThread.start();
+            });
+        }
+    }
+
 }
+//END OF LINE
