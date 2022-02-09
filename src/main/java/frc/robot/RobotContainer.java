@@ -9,12 +9,10 @@ import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.simulation.JoystickSim;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -28,29 +26,33 @@ public class RobotContainer {
 
   // Controllers for individual tasks. 
   private final Joystick manipulatorControl = new Joystick(0);
-  private final XboxController driverControl = new XboxController(1);
+  public static XboxController driverControl = new XboxController(1);
 
   // Declared four joystick buttons for intake purposes. 
-  private final JoystickButton J1 = new JoystickButton(manipulatorControl, 11); // whileHeld: m_intake (spin intake in)
-  private final JoystickButton J2 = new JoystickButton(manipulatorControl, 12); // whileHeld: m_intake (spin intake out)
+  private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1); // whileHeld: m_intake (spin intake in)
+  private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); // whileHeld: m_intake (spin intake out)
   private final JoystickButton J3 = new JoystickButton(manipulatorControl, 5);  // whileHeld: m_storage (spin storage flywheels in)
   private final JoystickButton J4 = new JoystickButton(manipulatorControl, 3);  // whileHeld: m_storage (spin storage flywheels out)
-  private final JoystickButton J5 = new JoystickButton(manipulatorControl, 1);  // whenPressed: m_shot (spin shot motor 1 full rotation)
+  private final JoystickButton J5 = new JoystickButton(manipulatorControl, 6);  // whenPressed: m_shot (spin shot motor 1 full rotation)
 
   // Moving axis for intake and outake control (will be utilized for intake spinning!)
-  private final double intakeAxis = manipulatorControl.getRawAxis(3);
+  // private final double intakeAxis = manipulatorControl.getRawAxis(3);
 
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
   private final Intake m_intake = new Intake();
-  private final Shooter m_storage = new Shooter();
-  private final Shooter m_shot = new Shooter();
+  private final Shooter m_shooter = new Shooter();
+  private final Climber m_climber = new Climber();
+  private static DriveTrain m_drivetrain = new DriveTrain();
+
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
+    m_drivetrain.setDefaultCommand(new Driving(m_drivetrain));
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -62,13 +64,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    J1.whileHeld(new ControlIntake(m_intake));
-    J2.whileHeld(new ControlIntake(m_intake));
-
-    J3.whileHeld(new ControlStorage(m_storage));
-    J4.whileHeld(new ControlStorage(m_storage));
-
-    J5.whenPressed(new ControlShot(m_shot));
+    J1.whileHeld(new ElevatorPower(m_climber));
+    J2.whenPressed(new ControlShot(m_shooter));
   }
 
   /**

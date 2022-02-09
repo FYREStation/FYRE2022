@@ -13,15 +13,30 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static double throttle = 0.6;
     //Motor Controller Ports
-    public static int intakeMotorOne;
-    public static int intakeMotorTwo;
-    public static int shooterMotor;
-    public static int climberMotorOne;
-    public static int climberMotorTwo;
-    public static int climberMotorThree;
-    public static int leftDriveMotors;
-    public static int rightDriveMotors;
+    //Intake Ports
+    public static int intakeMotorOne = 3;
+    public static int intakeMotorTwo = 1; // was 1 
+
+    //Shooter Ports
+    public static int shooterMotor = 0; 
+    public static int shooterEncoderA = 0;
+    public static int shooterEncoderB = 1;
+
+    //Climber Ports
+    public static int climberMotorOne = 5;
+    public static int climberMotorTwo = 4;
+    public static int climberMotorThree = 8; // was 0 
+    public static int climberMotorFour = 6;
+
+    //DriveTrain Ports
+    public static int leftDriveMotorA = 1; 
+    //public static int leftDriveMotorB = 3;
+    public static int rightDriveMotorA = 2;
+    //public static int rightDriveMotorB = 4;
+    public static boolean invertedDrive = true;
+    public static boolean isTank = true;
 
     //TODO: Add sensors (gyro, encoder, and cameras for example)
 }

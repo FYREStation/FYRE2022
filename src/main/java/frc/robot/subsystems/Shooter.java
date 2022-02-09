@@ -5,18 +5,27 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private Spark motorShoot = new Spark(0);
-
-  public Shooter() {}
+  private Spark motorShoot = new Spark(Constants.shooterMotor);
+  private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
+  
+  public Shooter() {
+    shooterEncoder.reset();
+    shooterEncoder.setDistancePerPulse(2048.0);
+    
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getDistance());
   }
 
   @Override
@@ -26,10 +35,14 @@ public class Shooter extends SubsystemBase {
 
   // Placeholder functions for OneRevolution
   public void spinForward(){
-    //TODO: Add actual motors
+    motorShoot.set(0.6);
   }
   
   public void stopSpin(){
-    //TODO: Add actual motors
+    motorShoot.set(0.0);
+  }
+
+  public double getDistance(){
+    return shooterEncoder.getDistance();
   }
 }
