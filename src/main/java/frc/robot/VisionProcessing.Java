@@ -3,6 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 package frc.robot;
 
+import java.lang.reflect.Array;
+import java.util.function.DoubleToLongFunction;
+
 //Import all of the packages to assist with vision processing
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
@@ -22,17 +25,17 @@ import edu.wpi.first.vision.VisionThread;
 //Class to handle all of the calculations
 public class VisionProcessing extends TimedRobot {
     //Defining all of the vectors that are going to be used
-    public double centerX = 0.0;
-    public double centery = 0.0;
-    public double radius = 0.0;
-    private VisionThread visionThread;
+    public static double centerX = 0.0;
+    public static double centerY = 0.0;
+    public static double diameter = 0.0;
+    private static VisionThread visionThread;
     //Camera width and height
     private static final int IMG_WIDTH = 320;
     private static final int IMG_HEIGHT = 240;
 
-    public final Object imgLock = new Object();
+    public static final Object imgLock = new Object();
     //Defining a function to calculate all of the vectors used
-    public void get_vision_vectors() {
+    public static void get_vision_vectors() {
         //Getting the input from the camera
         UsbCamera camera = CameraServer.startAutomaticCapture();
         camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
@@ -42,9 +45,9 @@ public class VisionProcessing extends TimedRobot {
             if (!pipeline.filterContoursOutput().isEmpty()) {
                 Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
                 synchronized (imgLock) {
-                    radius = r.width;
+                    diameter = r.width;
                     centerX = r.x + (r.width / 2);
-                    centery = r.y + (r.height / 2);
+                    centerY = r.y + (r.height / 2);
                 }
             }
             visionThread.start();
@@ -54,13 +57,28 @@ public class VisionProcessing extends TimedRobot {
                 if (!pipeline.filterContoursOutput().isEmpty()) {
                     Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
                     synchronized (imgLock) {
-                        radius = r.width;
+                        diameter = r.width;
                         centerX = r.x + (r.width / 2);
-                        centery = r.y + (r.height / 2);
+                        centerY = r.y + (r.height / 2);
+                        
                     }
                 }
                 visionThread.start();
             });
+        }
+        
+    }
+
+
+    public static double get_radius() {
+        return(diameter);
+    }
+
+    public static double get_center(String input) {
+        if (input == "x") {
+            return(centerX);
+        } else {
+            return(centerY);
         }
     }
 

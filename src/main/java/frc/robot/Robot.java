@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -75,7 +74,21 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    //THIS SECTION OF CODE CAN BE MOVED!!
+    //Tells the robot to face the targeted ball
+    //Note: At this time, I do not fully understand how to make 
+    //motors move, and do not want to screw anything up, so I will 
+    //leave placeholders for those actions
+    VisionProcessing.get_vision_vectors();
+    if (VisionProcessing.get_center("X") <= 150) {
+      //Code here to make motors spin the robot counterclockwise
+    } else if (VisionProcessing.get_center("X") >= 170) {
+      //Code here to make motors spun the robot clockwise
+    } else {
+      //Stop spinning, maybe move straight
+    }
+  }
 
   @Override
   public void teleopInit() {
