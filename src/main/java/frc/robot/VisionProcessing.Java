@@ -19,7 +19,6 @@ import edu.wpi.first.vision.VisionThread;
 
 
 
-
 //Class to handle all of the calculations
 public class VisionProcessing extends TimedRobot {
     //Defining all of the vectors that are going to be used
