@@ -16,6 +16,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
 
@@ -69,15 +70,19 @@ public class VisionProcessing extends TimedRobot {
         
     }
 
-
+    
     public static double get_radius() {
+        SmartDashboard.putNumber("Diameter", diameter);
         return(diameter);
+        
     }
 
     public static double get_center(String input) {
         if (input == "x") {
+            SmartDashboard.putNumber("Center X", centerX);
             return(centerX);
         } else {
+            SmartDashboard.putNumber("Center Y", centerY);
             return(centerY);
         }
     }

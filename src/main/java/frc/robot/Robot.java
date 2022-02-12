@@ -81,6 +81,7 @@ public class Robot extends TimedRobot {
     //motors move, and do not want to screw anything up, so I will 
     //leave placeholders for those actions
     VisionProcessing.get_vision_vectors();
+    VisionProcessing.get_radius();
     if (VisionProcessing.get_center("X") <= 150) {
       //Code here to make motors spin the robot counterclockwise
     } else if (VisionProcessing.get_center("X") >= 170) {
