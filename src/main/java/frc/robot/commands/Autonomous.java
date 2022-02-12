@@ -1,11 +1,22 @@
+/*
+    [ commands / Autonomous.java ]
+    Storage of autonomous code for 
+    Autonomous section of round. 
+
+*/ 
+
+// [ Package ]
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-
-import frc.robot.commands.*;
+// [ Imports ] 
+// // [ Files ]
 import frc.robot.subsystems.*;
+// // [ Classes ]
+import edu.wpi.first.wpilibj2.command.CommandBase;
+// import frc.robot.Constants;
+// import frc.robot.commands.*;
 
+// [ Functions ]
 public class Autonomous extends CommandBase {
     private final DriveTrain drive_train; 
 
@@ -15,9 +26,7 @@ public class Autonomous extends CommandBase {
     }
 
     @Override
-    public void initialize() { 
- 
-    }
+    public void initialize() {}
 
     @Override   
     public void execute() { 
@@ -26,14 +35,13 @@ public class Autonomous extends CommandBase {
 
     @Override
     public boolean isFinished() { 
-        return true; 
+        return false; 
     }
 
     @Override
-    public void end(boolean interrupted) { 
+    public void end(boolean interrupted) {}
 
-    }
-
+    // Short movement command. Not fully functional. 
     public void fake_auto() { 
         int i = 0; 
         while (i < 2000) { 

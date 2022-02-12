@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-package frc.robot;
+/* package frc.robot;
 
 import java.lang.reflect.Array;
 import java.util.function.DoubleToLongFunction;
@@ -33,12 +33,13 @@ public class VisionProcessing extends TimedRobot {
     //Camera width and height
     private static final int IMG_WIDTH = 320;
     private static final int IMG_HEIGHT = 240;
+    private static UsbCamera camera = CameraServer.startAutomaticCapture();
+    
 
     public static final Object imgLock = new Object();
     //Defining a function to calculate all of the vectors used
     public static void get_vision_vectors() {
         //Getting the input from the camera
-        UsbCamera camera = CameraServer.startAutomaticCapture();
         camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
         //Deciding what aliance we are on and calculating the vectors
         if(DriverStation.getAlliance().toString() == "RED") {
@@ -87,5 +88,6 @@ public class VisionProcessing extends TimedRobot {
         }
     }
 
-}
+}*/
+
 //END OF LINE

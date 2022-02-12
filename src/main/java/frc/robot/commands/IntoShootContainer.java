@@ -1,43 +1,42 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/*
+	[ commands / IntoShootContainer.java ]
+	Movement for flywheels on inside of 
+	robot, propelling balls to shot position. 
 
+*/ 
+
+// [ Package ]
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+// [ Imports ] 
+// // [ Files ] 
 import frc.robot.subsystems.Intake;
+// // [ Classes ]
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
-/** An example command that uses an example subsystem. */
+// [ Functions ]
 public class IntoShootContainer extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Intake m_intake;
-  
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public IntoShootContainer(Intake subsystem) {
-    m_intake = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
-  }
+	private final Intake m_intake;
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    m_intake.runShootHold();
-  }
+	public IntoShootContainer(Intake subsystem) {
+		m_intake = subsystem;
+    	addRequirements(subsystem);
+	}
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    m_intake.stopShootHold();
-  }
+	@Override
+	//-> Runs the internal flywheels continously. 
+	public void execute() {
+		m_intake.runShootHold();
+	}
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+	@Override
+	//-> Pauses these wheels once the command is called off. 
+  	public void end(boolean interrupted) {
+    	m_intake.stopShootHold();
+  	}
+
+  	@Override
+  	public boolean isFinished() {
+    	return false;
+  	}
 }
