@@ -11,20 +11,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Climber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  VictorSPX hookMotor = new VictorSPX(Constants.climberMotorTwo);
-  Spark elevatorMotor = new Spark(Constants.climberMotorThree);
+  VictorSPX hookMotor = new VictorSPX(Constants.climberMotorThree);
+  Spark elevatorMotor = new Spark(Constants.climberMotorFour);
   VictorSPX articulateMotorOne = new VictorSPX(Constants.climberMotorOne);
-  VictorSPX articulateMotorTwo = new VictorSPX(Constants.climberMotorFour);
+  VictorSPX articulateMotorTwo = new VictorSPX(Constants.climberMotorTwo);
 
-  double hookPower = 0;
-  double articulatePower = 0;
-  double elevatorPower = 0;
+  double hookPower = 0.0;
+  double articulatePower = 0.0;
+  double elevatorPower = 0.0;
 
   public Climber() {
-    //TODO make sure to set reverse motors
+    //TODO actually put values into the reverse motors
     
   }
 
@@ -60,7 +61,6 @@ public class Climber extends SubsystemBase {
   public void spinHook(){
     hookMotor.set(ControlMode.PercentOutput, hookPower);
   }
-
   public void stopElevator(){
     elevatorMotor.set(0.0);
   }
@@ -73,6 +73,7 @@ public class Climber extends SubsystemBase {
     articulateMotorOne.set(ControlMode.PercentOutput, 0.0);
     articulateMotorTwo.set(ControlMode.PercentOutput, 0.0);
   }
+  
 
   public void stopEverything(){
     hookPower = 0.0;

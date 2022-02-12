@@ -34,14 +34,30 @@ public class ElevatorPower extends CommandBase {
   @Override
   public void execute() {
     switch (sectionPower) {
-      case "Hook":
+      case "Hook Positive":
+        m_Climber.setHookPower(0.6);
         m_Climber.spinHook();
         break;
-      case "Articulate":
+      case "Hook Negative":
+        m_Climber.setHookPower(-0.6);
+        m_Climber.spinHook();
+        break;
+      case "Articulate Positive":
+        m_Climber.setArticulatePower(0.6);
         m_Climber.spinArticulate();
         break;
-      case "Elevator":
+     
+      case "Articulate Negative":
+        m_Climber.setArticulatePower(0.6);
+        m_Climber.spinArticulate();
+        break;
+      case "Elevator Positive":
+        m_Climber.setElevatorPower(0.6);
         m_Climber.spinElevator();
+        break;
+      case "Elevator Negative":
+        m_Climber.setElevatorPower(-0.6);
+        m_Climber.spinArticulate();
         break;
       default:
         m_Climber.stopEverything();
@@ -52,7 +68,7 @@ public class ElevatorPower extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Climber.stopElevator();
+    m_Climber.stopEverything();
   }
 
   // Returns true when the command should end.
