@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    //VisionProcessing.get_vision_vectors();
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -80,7 +80,6 @@ public class Robot extends TimedRobot {
     //Note: At this time, I do not fully understand how to make 
     //motors move, and do not want to screw anything up, so I will 
     //leave placeholders for those actions
-    VisionProcessing.get_vision_vectors();
     VisionProcessing.get_radius();
     if (VisionProcessing.get_center("X") <= 150) {
       //Code here to make motors spin the robot counterclockwise

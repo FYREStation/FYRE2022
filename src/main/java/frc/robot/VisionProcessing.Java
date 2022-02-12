@@ -33,13 +33,15 @@ public class VisionProcessing extends TimedRobot {
     //Camera width and height
     private static final int IMG_WIDTH = 320;
     private static final int IMG_HEIGHT = 240;
+    static UsbCamera camera = CameraServer.startAutomaticCapture();
+    public VisionProcessing() {
+        camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
+    }
 
     public static final Object imgLock = new Object();
     //Defining a function to calculate all of the vectors used
     public static void get_vision_vectors() {
         //Getting the input from the camera
-        UsbCamera camera = CameraServer.startAutomaticCapture();
-        camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
         //Deciding what aliance we are on and calculating the vectors
         if(DriverStation.getAlliance().toString() == "RED") {
             visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
