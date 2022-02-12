@@ -16,7 +16,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-/* import com.fasterxml.jackson.annotation.JsonCreator.Mode; */ 
+/* import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+   import com.revrobotics.CANSparkMaxLowLevel.MotorType; */ 
 
 // [ Functions ]
 public class Climber extends SubsystemBase {

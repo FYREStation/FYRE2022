@@ -1,5 +1,5 @@
 /*
-	[ Main.java ]
+	[ RobotContainer.java ]
 	The bulk of all robot code and 
 	initialization is contained here. 
 
@@ -35,8 +35,18 @@ public class RobotContainer {
 	public static XboxController driverControl = new XboxController(1);
 
 	//-> Series of declared Joystick buttons for controlling purposes. 
-	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1); // whileHeld: m_intake (spin intake in)
-	private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); // whileHeld: m_intake (spin intake out)
+	// private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
+	private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); 
+	/* private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  
+	private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
+	private final JoystickButton J5 = new JoystickButton(manipulatorControl, 5);
+	private final JoystickButton J6 = new JoystickButton(manipulatorControl, 6); */ 
+	private final JoystickButton J7 = new JoystickButton(manipulatorControl, 7);
+	private final JoystickButton J8 = new JoystickButton(manipulatorControl, 8);
+	private final JoystickButton J9 = new JoystickButton(manipulatorControl, 9);
+	private final JoystickButton J10 = new JoystickButton(manipulatorControl, 10);
+	private final JoystickButton J11 = new JoystickButton(manipulatorControl, 11);
+  	private final JoystickButton J12 = new JoystickButton(manipulatorControl, 12);
 
 	//-> Series of defined subsystems. 
 	private final Shooter m_shooter = new Shooter();
@@ -56,7 +66,12 @@ public class RobotContainer {
 
 	//-> Method container for mapping button inputs to commands. 
 	private void configureButtonBindings() {
-		J1.whileHeld(new ElevatorPower(m_climber, "Hook"));
+    	J12.whileHeld(new ElevatorPower(m_climber, "Elevator Positive"));
+    	J11.whileHeld(new ElevatorPower(m_climber, "Elevator Negative"));
+    	J10.whileHeld(new ElevatorPower(m_climber, "Articulate Positive"));
+    	J9.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
+    	J8.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
+    	J7.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
 		J2.whenPressed(new ControlShot(m_shooter));
 	}
 
@@ -65,3 +80,4 @@ public class RobotContainer {
 		return m_autoCommand;
 	}
 }
+

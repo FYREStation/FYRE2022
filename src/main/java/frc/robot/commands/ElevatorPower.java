@@ -16,45 +16,60 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
 public class ElevatorPower extends CommandBase {
-	private final Climber m_Climber;
-	private final String sectionPower;
-
-	public ElevatorPower(Climber subsystem, String section) {
-    	m_Climber = subsystem;
-    	sectionPower = section;
-    	addRequirements(subsystem);
+  	private final Climber m_Climber;
+	String sectionPower;
+	  
+	public ElevatorPower(Climber subsystem,String section) {
+		m_Climber = subsystem;
+		sectionPower = section;
+		addRequirements(subsystem);
 	}
 
-  	@Override
-  	public void initialize() {}
-
 	@Override
-	//-> Switch statement to check how this command should run in regards to sectionPower. 
+	public void initialize() {}
+
+	//-> Switch statement for selecting power and functions for Climber command. 
+	@Override
 	public void execute() {
 		switch (sectionPower) {
-      		case "Hook":
-        		m_Climber.spinHook();
-        		break;
-      		case "Articulate":
-        		m_Climber.spinArticulate();
-        		break;
-      		case "Elevator":
-        		m_Climber.spinElevator();
-        		break;
-      		default:
-        		m_Climber.stopEverything();
-        		break;
+			case "Hook Positive":
+				m_Climber.setHookPower(0.6);
+				m_Climber.spinHook();
+				break;
+			case "Hook Negative":
+				m_Climber.setHookPower(-0.6);
+				m_Climber.spinHook();
+				break;
+			case "Articulate Positive":
+				m_Climber.setArticulatePower(0.6);
+				m_Climber.spinArticulate();
+				break;
+			case "Articulate Negative":
+				m_Climber.setArticulatePower(0.6);
+				m_Climber.spinArticulate();
+				break;
+			case "Elevator Positive":
+				m_Climber.setElevatorPower(0.6);
+				m_Climber.spinElevator();
+				break;
+			case "Elevator Negative":
+				m_Climber.setElevatorPower(-0.6);
+				m_Climber.spinArticulate();
+				break;
+			default:
+				m_Climber.stopEverything();
+				break;
 		}
 	}
 
-  @Override
-  //-> Kills elevator when this command is cancelled. 
-  public void end(boolean interrupted) {
-    m_Climber.stopElevator();
-  }
+	@Override
+	//-> Kills elevator when this command is cancelled. 
+	public void end(boolean interrupted) {
+		m_Climber.stopEverything();
+	}
 
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+	@Override
+	public boolean isFinished() {
+		return false;
+	}
 }
