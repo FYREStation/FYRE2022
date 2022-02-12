@@ -21,7 +21,7 @@ public class Autonomous extends CommandBase {
 
     @Override   
     public void execute() { 
-        fake_auto();  
+        //fake_auto();  
     }
 
     @Override
