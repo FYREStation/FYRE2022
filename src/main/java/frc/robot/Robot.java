@@ -77,7 +77,22 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-
+    //THIS SECTION OF CODE CAN BE MOVED!!
+    //Tells the robot to face the targeted ball
+    //Note: At this time, I do not fully understand how to make 
+    //motors move, and do not want to screw anything up, so I will 
+    //leave placeholders for those actions
+    VisionProcessing.get_radius();
+    if (VisionProcessing.get_center("X") <= 150) {
+      SmartDashboard.putNumber("Center X", VisionProcessing.get_center("X"));
+      //Code here to make motors spin the robot counterclockwise
+    } else if (VisionProcessing.get_center("X") >= 170) {
+      SmartDashboard.putNumber("Center X", VisionProcessing.get_center("X"));
+      //Code here to make motors spun the robot clockwise
+    } else {
+      SmartDashboard.putNumber("Center X", 69);
+      //Stop spinning, maybe move straight
+    }
   }
 
   @Override
