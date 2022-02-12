@@ -78,7 +78,7 @@ public class VisionProcessing extends TimedRobot {
     }
 
     public static double get_center(String input) {
-        if (input == "x") {
+        if (input == "X") {
             SmartDashboard.putNumber("Center X", centerX);
             return(centerX);
         } else {
