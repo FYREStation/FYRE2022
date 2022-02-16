@@ -23,22 +23,7 @@ public class Autonomous extends CommandBase {
 
     @Override   
     public void execute() { 
-    //THIS SECTION OF CODE CAN BE MOVED!!
-    //Tells the robot to face the targeted ball
-    //Note: At this time, I do not fully understand how to make 
-    //motors move, and do not want to screw anything up, so I will 
-    //leave placeholders for those actions
-    VisionProcessing.get_radius();
-    if (VisionProcessing.get_center("X") <= 150) {
-      SmartDashboard.putNumber("Center X", VisionProcessing.get_center("X"));
-      //Code here to make motors spin the robot counterclockwise
-    } else if (VisionProcessing.get_center("X") >= 170) {
-      SmartDashboard.putNumber("Center X", VisionProcessing.get_center("X"));
-      //Code here to make motors spun the robot clockwise
-    } else {
-      SmartDashboard.putNumber("Center X", 69);
-      //Stop spinning, maybe move straight
-    }
+      fake_auto();
     }
 
     @Override
@@ -52,6 +37,20 @@ public class Autonomous extends CommandBase {
     }
 
     public void fake_auto() { 
+      SmartDashboard.putString("Bazinga", "Punk");
+
+      //THIS SECTION OF CODE CAN BE MOVED!!
+      //Tells the robot to face the targeted ball
+      //Note: At this time, I do not fully understand how to make 
+      //motors move, and do not want to screw anything up, so I will 
+      //leave placeholders for those actions
+      VisionProcessing.get_vision_vectors();
+      VisionProcessing.get_radius();
+      SmartDashboard.putNumber("Center X", VisionProcessing.get_center("X"));
+      SmartDashboard.putNumber("Center Y", VisionProcessing.get_center("Y"));
+      //Code here to make motors spin the robot counterclockwise
+
+    /*
         int i = 0; 
         while (i < 2000) { 
             drive_train.tankDrive(-0.7, 0.7);
@@ -61,5 +60,6 @@ public class Autonomous extends CommandBase {
 
         System.out.println("ENDED!"); 
         isFinished();
+    */
     }
 }

@@ -26,9 +26,9 @@ import edu.wpi.first.vision.VisionThread;
 //Class to handle all of the calculations
 public class VisionProcessing extends TimedRobot {
     //Defining all of the vectors that are going to be used
-    public static double centerX = 08.0;
-    public static double centerY = 15.0;
-    public static double diameter = 55.0;
+    public static double centerX = 0.0;
+    public static double centerY = 0.0;
+    public static double diameter = 0.0;
     private static VisionThread visionThread;
     //Camera width and height
     private static final int IMG_WIDTH = 320;
@@ -51,8 +51,8 @@ public class VisionProcessing extends TimedRobot {
                 diameter = r.width;
                 centerX = r.x + (r.width / 2);
                 centerY = r.y + (r.height / 2);
-                SmartDashboard.putNumber("Center X", centerX);
-                SmartDashboard.putNumber("Center Y", centerY);
+                //SmartDashboard.putNumber("Center X", centerX);
+                //SmartDashboard.putNumber("Center Y", centerY);
             }
             visionThread.start();
         });
@@ -64,8 +64,8 @@ public class VisionProcessing extends TimedRobot {
                 diameter = r.width;
                 centerX = r.x + (r.width / 2);
                 centerY = r.y + (r.height / 2);
-                SmartDashboard.putNumber("Center X", centerX);
-                SmartDashboard.putNumber("Center Y", centerY);
+                //SmartDashboard.putNumber("Center X", centerX);
+                //SmartDashboard.putNumber("Center Y", centerY);
                 visionThread.start();
             });
         }
@@ -74,17 +74,17 @@ public class VisionProcessing extends TimedRobot {
 
     
     public static double get_radius() {
-        SmartDashboard.putNumber("Diameter", diameter);
+        //SmartDashboard.putNumber("Diameter", diameter);
         return(diameter);
         
     }
 
     public static double get_center(String input) {
         if (input == "X") {
-            SmartDashboard.putNumber("Center X", centerX);
+            //SmartDashboard.putNumber("Center X", centerX);
             return(centerX);
         } else {
-            SmartDashboard.putNumber("Center Y", centerY);
+            //SmartDashboard.putNumber("Center Y", centerY);
             return(centerY);
         }
     }
