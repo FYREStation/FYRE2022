@@ -13,19 +13,21 @@ package frc.robot.subsystems;
 import frc.robot.Constants;
 // // [ Classes ] 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.revrobotics.CANSparkMax;
 /* import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-   import com.revrobotics.CANSparkMaxLowLevel.MotorType; */ 
+   import com.revrobotics.CANSparkMaxLowLevel.MotorType; */
+import com.revrobotics.CANSparkMaxLowLevel.MotorType; 
 
 // [ Functions ]
 public class Climber extends SubsystemBase {
 	//-> Defines a series of motors used in climber mechanism. 
-	VictorSPX hookMotor = new VictorSPX(Constants.climberMotorTwo);
-	Spark elevatorMotor = new Spark(Constants.climberMotorThree);
-	VictorSPX articulateMotorOne = new VictorSPX(Constants.climberMotorOne);
-	VictorSPX articulateMotorTwo = new VictorSPX(Constants.climberMotorFour);
+	TalonSRX hookMotor = new TalonSRX(Constants.climberMotorTwo);
+	VictorSPX elevatorMotor = new VictorSPX(Constants.climberMotorThree);
+	CANSparkMax articulateMotorOne = new CANSparkMax(Constants.climberMotorOne, MotorType.kBrushed);
+	CANSparkMax articulateMotorTwo = new CANSparkMax(Constants.climberMotorFour, MotorType.kBrushed);
 
 	//-> Power variables. 
 	double hookPower = 0;
@@ -57,12 +59,12 @@ public class Climber extends SubsystemBase {
 
 	//-> Rotates motors by their designated power variables. 
 	public void spinElevator(){
-		elevatorMotor.set(elevatorPower);
+		elevatorMotor.set(ControlMode.PercentOutput, elevatorPower);
 	}
 
 	public void spinArticulate (){
-		articulateMotorOne.set(ControlMode.PercentOutput, articulatePower);
-		articulateMotorTwo.set(ControlMode.PercentOutput, articulatePower);
+		articulateMotorOne.set(articulatePower);
+		articulateMotorTwo.set(articulatePower);
 	}
 
 	public void spinHook(){
@@ -71,7 +73,7 @@ public class Climber extends SubsystemBase {
 
 	//-> Pauses all motors. 
 	public void stopElevator(){
-		elevatorMotor.set(0.0);
+		elevatorMotor.set(ControlMode.PercentOutput, 0.0);
 	}
 
 	public void stopHook(){
@@ -79,8 +81,8 @@ public class Climber extends SubsystemBase {
 	}
 
 	public void stopArticulate(){
-		articulateMotorOne.set(ControlMode.PercentOutput, 0.0);
-		articulateMotorTwo.set(ControlMode.PercentOutput, 0.0);
+		articulateMotorOne.set(0.0);
+		articulateMotorTwo.set(0.0);
 	}
 
 	//-> Kill switch for all motors + variables. 
