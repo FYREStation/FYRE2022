@@ -35,7 +35,7 @@ public class RobotContainer {
 	public static XboxController driverControl = new XboxController(1);
 
 	//-> Series of declared Joystick buttons for controlling purposes. 
-	// private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
+	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
 	private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); 
 	/* private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  
 	private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
@@ -72,7 +72,8 @@ public class RobotContainer {
     	J9.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
     	J8.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
     	J7.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
-		J2.whenPressed(new ControlShot(m_shooter));
+		J1.whenPressed(new ControlShot(m_shooter, "Shooter_Forward"));
+		J2.whenPressed(new ControlShot(m_shooter, "Shooter_Backward"));
 	}
 
 	//-> Passes autonomous command to Robot class. 

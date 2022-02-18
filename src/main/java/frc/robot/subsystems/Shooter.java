@@ -39,8 +39,12 @@ public class Shooter extends SubsystemBase {
 	public void simulationPeriodic() {}
 
 	//-> Placeholder functions for OneRevolution.java. 
-	public void spinForward(){
+	public void spinForward() {
 		motorShoot.set(0.6);
+	}
+
+	public void spinBackward() {
+		motorShoot.set(-0.6);
 	}
 
 	public void stopSpin(){
