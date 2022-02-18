@@ -24,10 +24,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 // [ Functions ]
 public class Climber extends SubsystemBase {
 	//-> Defines a series of motors used in climber mechanism. 
-	TalonSRX hookMotor = new TalonSRX(Constants.climberMotorTwo);
-	VictorSPX elevatorMotor = new VictorSPX(Constants.climberMotorThree);
-	CANSparkMax articulateMotorOne = new CANSparkMax(Constants.climberMotorOne, MotorType.kBrushed);
-	CANSparkMax articulateMotorTwo = new CANSparkMax(Constants.climberMotorFour, MotorType.kBrushed);
+	TalonSRX hookMotor = new TalonSRX(Constants.chainMotor);
+	VictorSPX elevatorMotor = new VictorSPX(Constants.motorElevator);
+	CANSparkMax articulateMotorOne = new CANSparkMax(Constants.motorOneArticulate, MotorType.kBrushed);
+	CANSparkMax articulateMotorTwo = new CANSparkMax(Constants.motorTwoArticulate, MotorType.kBrushed);
 
 	//-> Power variables. 
 	double hookPower = 0;
