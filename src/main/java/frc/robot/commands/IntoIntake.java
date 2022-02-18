@@ -17,9 +17,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // [ Functions ]
 public class IntoIntake extends CommandBase {
 	private final Intake m_intake;
+	String going_direction;
   
-	public IntoIntake(Intake subsystem) {
+	public IntoIntake(Intake subsystem, String direction) {
 		m_intake = subsystem;
+		going_direction = direction;
     	addRequirements(subsystem);
 	}
 
@@ -29,13 +31,23 @@ public class IntoIntake extends CommandBase {
 	@Override
 	//-> Runs intake motors continuously. 
 	public void execute() {
-    	m_intake.runIntakeHold();
+    	switch(going_direction) {
+			case "Intake_Forward":
+				m_intake.run_intake_forward();
+				break;
+			case "Intake_Backward":
+				m_intake.run_intake_backward();
+				break;
+			default:
+				m_intake.stopIntake();
+				break;
+		}
   	}
 
 	@Override
 	//-> Pauses these motors once this command is called off. 
   	public void end(boolean interrupted) {
-    	m_intake.stopIntakeHold();
+    	m_intake.stopIntake();
   	}
 
   	@Override

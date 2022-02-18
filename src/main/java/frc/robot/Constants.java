@@ -18,8 +18,7 @@ public final class Constants {
     public static double throttle = 0.6;
 
     // [ Intake Ports ] 
-    public static int intakeMotorOne = 3;
-    public static int intakeMotorTwo = 1; 
+    public static int intakeMotor = 3;
 
     // [ Shooter Ports ] 
     public static int shooterMotor = 3; 

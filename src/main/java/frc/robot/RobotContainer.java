@@ -37,10 +37,10 @@ public class RobotContainer {
 	//-> Series of declared Joystick buttons for controlling purposes. 
 	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
 	private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); 
-	/* private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  
-	private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
+	private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  
+	//private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
 	private final JoystickButton J5 = new JoystickButton(manipulatorControl, 5);
-	private final JoystickButton J6 = new JoystickButton(manipulatorControl, 6); */ 
+	//private final JoystickButton J6 = new JoystickButton(manipulatorControl, 6);
 	private final JoystickButton J7 = new JoystickButton(manipulatorControl, 7);
 	private final JoystickButton J8 = new JoystickButton(manipulatorControl, 8);
 	private final JoystickButton J9 = new JoystickButton(manipulatorControl, 9);
@@ -51,6 +51,7 @@ public class RobotContainer {
 	//-> Series of defined subsystems. 
 	private final Shooter m_shooter = new Shooter();
 	private final Climber m_climber = new Climber();
+	private final Intake m_intake = new Intake();
 	private static DriveTrain m_drivetrain = new DriveTrain();
 	// private final Intake m_intake = new Intake();
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -72,8 +73,10 @@ public class RobotContainer {
     	J9.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
     	J8.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
     	J7.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
-		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
+		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
+		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backwards"));
 		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
+		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
 	}
 
 	//-> Passes autonomous command to Robot class. 
