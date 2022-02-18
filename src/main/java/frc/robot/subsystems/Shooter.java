@@ -11,9 +11,12 @@ package frc.robot.subsystems;
 // [ Imports ] 
 // // [ Files ] 
 import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 // // [ Classes ] 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import edu.wpi.first.cscore.UsbCamera;
@@ -21,7 +24,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // [ Functions ]
 public class Shooter extends SubsystemBase {
 	//-> Defines shooter motor and shoot encoder for rotation calculation. 
-	private Spark motorShoot = new Spark(Constants.shooterMotor);
+	private TalonSRX motorShoot = new TalonSRX(Constants.shooterMotor);
 	private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
 
 	public Shooter() {
@@ -40,15 +43,15 @@ public class Shooter extends SubsystemBase {
 
 	//-> Placeholder functions for OneRevolution.java. 
 	public void spinForward() {
-		motorShoot.set(0.4);
+		motorShoot.set(ControlMode.PercentOutput, 0.4);
 	}
 
 	public void spinBackward() {
-		motorShoot.set(-0.4);
+		motorShoot.set(ControlMode.PercentOutput, -0.4);
 	}
 
 	public void stopSpin(){
-		motorShoot.set(0.0);
+		motorShoot.set(ControlMode.PercentOutput, 0.0);
 	}
 
 	//-> Grabs encoder distance for use in commands. 
