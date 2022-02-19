@@ -12,6 +12,9 @@ in a public states. Do not put anything functional in this class. */
 // [ Package ] 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+
 // [ Functions ] 
 public final class Constants {
 	// [ Variables ] 
@@ -45,4 +48,6 @@ public final class Constants {
     public static int driveLeftEncoderB = 5; 
 
     // TODO: Add sensors (gyro, encoder, and cameras for example)
+
+    public static UsbCamera camera = CameraServer.startAutomaticCapture();
 }
