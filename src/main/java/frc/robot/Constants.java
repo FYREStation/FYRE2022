@@ -18,7 +18,7 @@ public final class Constants {
     public static double throttle = 0.6;
 
     // [ Intake Ports ] 
-    public static int intakeMotor = 3;
+    public static int intakeMotor = 2;
 
     // [ Shooter Ports ] 
     public static int shooterMotor = 5; 
@@ -33,8 +33,8 @@ public final class Constants {
 
 
     // [ DriveTrain Ports ]
-    public static int leftDriveMotorA = 1; 
-    public static int rightDriveMotorA = 2;
+    public static int leftDriveMotorA = 0; 
+    public static int rightDriveMotorA = 1;
     public static boolean invertedDrive = true;
     public static boolean isTank = true;
 

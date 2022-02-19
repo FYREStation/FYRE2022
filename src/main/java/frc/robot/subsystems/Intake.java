@@ -31,11 +31,11 @@ public class Intake extends SubsystemBase {
 
     //-> Run commands for Intake and Shooter. 
     public void run_intake_forward() {
-        motorIntake.set(0.4);
+        motorIntake.set(0.6);
     }
 
     public void run_intake_backward() {
-        motorIntake.set(-0.4);
+        motorIntake.set(-0.6);
     }
 
     public void stopIntake() {
