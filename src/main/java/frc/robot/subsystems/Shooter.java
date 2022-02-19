@@ -43,11 +43,11 @@ public class Shooter extends SubsystemBase {
 
 	//-> Placeholder functions for OneRevolution.java. 
 	public void spinForward() {
-		motorShoot.set(ControlMode.PercentOutput, -0.4);
+		motorShoot.set(ControlMode.PercentOutput, -0.6);
 	}
 
 	public void spinBackward() {
-		motorShoot.set(ControlMode.PercentOutput, 0.4);
+		motorShoot.set(ControlMode.PercentOutput, 0.6);
 	}
 
 	public void stopSpin(){
