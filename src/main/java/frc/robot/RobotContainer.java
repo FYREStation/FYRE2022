@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.simulation.JoystickSim;
 
+
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -52,6 +54,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final Intake m_intake = new Intake();
+  private final Vision m_vision = new Vision();
   private final Shooter m_shooter = new Shooter();
   private final Climber m_climber = new Climber();
   private static DriveTrain m_drivetrain = new DriveTrain();
@@ -90,6 +93,7 @@ public class RobotContainer {
   
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+    new VisionProcessing(m_vision);
     return m_autoCommand;
   }
 }

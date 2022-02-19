@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -39,4 +42,6 @@ public final class Constants {
     public static boolean isTank = true;
 
     //TODO: Add sensors (gyro, encoder, and cameras for example)
+
+    public static UsbCamera camera = CameraServer.startAutomaticCapture();
 }
