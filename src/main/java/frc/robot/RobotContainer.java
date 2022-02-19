@@ -74,7 +74,7 @@ public class RobotContainer {
     	J8.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
     	J7.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
 		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
-		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backwards"));
+		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
 	}
 
