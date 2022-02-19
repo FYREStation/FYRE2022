@@ -1,12 +1,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.*;
-import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Autonomous extends CommandBase {
     private final DriveTrain drive_train; 

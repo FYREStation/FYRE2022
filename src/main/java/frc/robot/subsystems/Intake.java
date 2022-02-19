@@ -10,7 +10,6 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase; // Subsystem framework 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 // Copy class Subsystem base to Intake
 public class Intake extends SubsystemBase {

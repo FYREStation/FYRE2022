@@ -10,9 +10,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 public class Climber extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   VictorSPX hookMotor = new VictorSPX(Constants.climberMotorThree);

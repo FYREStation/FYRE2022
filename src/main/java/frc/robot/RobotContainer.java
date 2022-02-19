@@ -4,9 +4,6 @@
 
 package frc.robot;
 
-import com.fasterxml.jackson.databind.util.ArrayIterator;
-
-import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.simulation.JoystickSim;
@@ -15,7 +12,6 @@ import edu.wpi.first.wpilibj.XboxController;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -36,11 +32,13 @@ public class RobotContainer {
 
   // Declared four joystick buttons for intake purposes. 
   private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1); // whileHeld: m_intake (spin intake in)
+  /*
   private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); // whileHeld: m_intake (spin intake out)
   private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  // whileHeld: m_storage (spin storage flywheels in)
   private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  // whileHeld: m_storage (spin storage flywheels out)
   private final JoystickButton J5 = new JoystickButton(manipulatorControl, 5);
   private final JoystickButton J6 = new JoystickButton(manipulatorControl, 6);
+  */
   private final JoystickButton J7 = new JoystickButton(manipulatorControl, 7);
   private final JoystickButton J8 = new JoystickButton(manipulatorControl, 8);
   private final JoystickButton J9 = new JoystickButton(manipulatorControl, 9);
@@ -51,9 +49,9 @@ public class RobotContainer {
   // private final double intakeAxis = manipulatorControl.getRawAxis(3);
 
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final Intake m_intake = new Intake();
+  //private final Intake m_intake = new Intake();
   private final Vision m_vision = new Vision();
   private final Shooter m_shooter = new Shooter();
   private final Climber m_climber = new Climber();
