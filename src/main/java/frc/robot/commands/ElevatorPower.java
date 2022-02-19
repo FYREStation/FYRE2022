@@ -16,11 +16,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
 public class ElevatorPower extends CommandBase {
-  	private final Climber m_Climber;
+  	private final Climber m_climber;
 	String sectionPower;
 	  
-	public ElevatorPower(Climber subsystem,String section) {
-		m_Climber = subsystem;
+	public ElevatorPower(Climber subsystem, String section) {
+		m_climber = subsystem;
 		sectionPower = section;
 		addRequirements(subsystem);
 	}
@@ -33,31 +33,31 @@ public class ElevatorPower extends CommandBase {
 	public void execute() {
 		switch (sectionPower) {
 			case "Hook Positive":
-				m_Climber.setHookPower(0.4);
-				m_Climber.spinHook();
+				m_climber.setHookPower(0.4);
+				m_climber.spinHook();
 				break;
 			case "Hook Negative":
-				m_Climber.setHookPower(-0.4);
-				m_Climber.spinHook();
+				m_climber.setHookPower(-0.4);
+				m_climber.spinHook();
 				break;
 			case "Articulate Positive":
-				m_Climber.setArticulatePower(0.4);
-				m_Climber.spinArticulate();
+				m_climber.setArticulatePower(0.4);
+				m_climber.spinArticulate();
 				break;
 			case "Articulate Negative":
-				m_Climber.setArticulatePower(-0.4);
-				m_Climber.spinArticulate();
+				m_climber.setArticulatePower(-0.4);
+				m_climber.spinArticulate();
 				break;
 			case "Elevator Positive":
-				m_Climber.setElevatorPower(0.4);
-				m_Climber.spinElevator();
+				m_climber.setElevatorPower(0.4);
+				m_climber.spinElevator();
 				break;
 			case "Elevator Negative":
-				m_Climber.setElevatorPower(-0.4);
-				m_Climber.spinArticulate();
+				m_climber.setElevatorPower(-0.4);
+				m_climber.spinArticulate();
 				break;
 			default:
-				m_Climber.stopEverything();
+				m_climber.stopEverything();
 				break;
 		}
 	}
@@ -65,7 +65,7 @@ public class ElevatorPower extends CommandBase {
 	@Override
 	//-> Kills elevator when this command is cancelled. 
 	public void end(boolean interrupted) {
-		m_Climber.stopEverything();
+		m_climber.stopEverything();
 	}
 
 	@Override

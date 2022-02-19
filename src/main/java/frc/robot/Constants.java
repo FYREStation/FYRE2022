@@ -31,7 +31,6 @@ public final class Constants {
     public static int chainMotor = 3;
     public static int motorElevator = 4;
 
-
     // [ DriveTrain Ports ]
     public static int leftDriveMotorA = 0; 
     public static int rightDriveMotorA = 1;

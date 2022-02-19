@@ -90,6 +90,7 @@ public class Climber extends SubsystemBase {
 		hookPower = 0.0;
 		elevatorPower = 0.0;
 		articulatePower = 0.0;
+		
 		stopElevator();
 		stopHook();
 		stopArticulate();
