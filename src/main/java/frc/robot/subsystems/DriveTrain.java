@@ -16,10 +16,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Encoder;
 
 // [ Functions ] 
 public class DriveTrain extends SubsystemBase {
+
 	//-> Grabs motors from roboRIO ports using Constant values. 
 	private final Spark left_motorA = new Spark(Constants.leftDriveMotorA);
 	private final Spark right_motorA = new Spark(Constants.rightDriveMotorA);
@@ -33,6 +34,10 @@ public class DriveTrain extends SubsystemBase {
 
 	private static int expiration_dur = 99999; //-> Edit expiration time. 
 	private static boolean safety_toggle = false; //-> Edit safety toggle. 
+
+	//-> Creates new encoder variables to be used in Autonomous. 
+	private final Encoder left_encoder = new Encoder(Constants.driveLeftEncoderA, Constants.driveLeftEncoderB, true, Encoder.EncodingType.k4X);
+	private final Encoder right_encoder = new Encoder(Constants.driveRightEncoderA, Constants.driveRightEncoderB, true, Encoder.EncodingType.k4X);
 
 	//-> Sets a series of constants on motors. 
 	public DriveTrain (){
@@ -60,6 +65,38 @@ public class DriveTrain extends SubsystemBase {
 		} else {
 			differential_drive.tankDrive(-move_speed_l, -move_speed_r);
 		}    
+	}
+
+	//-> Methods to get different functions out of encoders.
+	public double get_encoder(String side) {
+		if (side == "left") { 
+			return this.left_encoder.get(); 
+		} else if (side == "right") { 
+			return this.right_encoder.get(); 
+		}
+
+		return 0.0; 
+	}
+
+	public void reset_encoder(String side) {
+		if (side == "left") {
+			left_encoder.reset(); 
+		} else if (side == "right") {
+			right_encoder.reset(); 
+		} else if (side == "both") { 
+			left_encoder.reset(); 
+			right_encoder.reset(); 
+		}
+	}
+
+	public double get_encoder_distance(String side) {
+		if (side == "left") { 
+			return left_encoder.getDistance(); 
+		} else if (side == "right") {
+			return right_encoder.getDistance(); 
+		}
+
+		return 0.0; 
 	}
 
 	@Override

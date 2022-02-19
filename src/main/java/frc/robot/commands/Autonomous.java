@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
 public class Autonomous extends CommandBase {
+    @SuppressWarnings("unused")
     private final DriveTrain drive_train; 
 
     public Autonomous(DriveTrain dt) { 

@@ -30,9 +30,7 @@ public class Climber extends SubsystemBase {
 	CANSparkMax articulateMotorTwo = new CANSparkMax(Constants.motorTwoArticulate, MotorType.kBrushed);
 
 	//-> Power variables. 
-	double hookPower = 0;
-	double articulatePower = 0;
-	double elevatorPower = 0;
+	double hookPower, articulatePower, elevatorPower = 0;
 
 	public Climber() {
 		// TODO: make sure to set reverse motors
