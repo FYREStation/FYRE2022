@@ -1,45 +1,54 @@
 /*
-	[ subsystem / Intake.java ]
-    Container for intake commands
-    and utilities.  
+   [ Intake ]
+*/
 
-*/ 
-
-// [ Package ] 
+// Grab package for frc.robot
 package frc.robot.subsystems;
 
-// [ Imports ] 
-// // [ Files ] 
+// Imports a series of basic APIs
 import frc.robot.Constants;
-// // [ Classes ]
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-// import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj2.command.SubsystemBase; // Subsystem framework 
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 
-// [ Functions ] 
+// Copy class Subsystem base to Intake
 public class Intake extends SubsystemBase {
-    //-> Creates a motor object, whose roboRIO ports are taken from Constants. 
-    private Spark motorIntake = new Spark(Constants.intakeMotor);
 
-    public Intake () {}
+    private Relay motorOne = new Relay(Constants.intakeMotorOne);
+    private Relay motorTwo = new Relay(Constants.intakeMotorTwo);
+
+    public Intake (){
+        
+    }
 
     @Override
-    public void periodic() {}
+    public void periodic(){
+
+    }
 
     @Override
-    public void simulationPeriodic() {}
+    public void simulationPeriodic(){
 
-    //-> Run commands for Intake and Shooter. 
-    public void run_intake_forward() {
-        motorIntake.set(0.6);
+    }
+  
+    public void setPower(double power){
+        //motor.set(power);
     }
 
-    public void run_intake_backward() {
-        motorIntake.set(-0.6);
+    public void runIntakeHold(){
+        motorOne.set(Value.kForward);
     }
 
-    public void stopIntake() {
-        motorIntake.set(0.0);
+    public void stopIntakeHold(){
+        motorOne.set(Value.kOff);
     }
-    
+
+    public void runShootHold(){
+        motorTwo.set(Value.kForward);
+    }
+
+    public void stopShootHold(){
+        motorTwo.set(Value.kOff);
+    }
+
 }
