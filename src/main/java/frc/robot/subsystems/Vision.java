@@ -52,46 +52,44 @@ public class Vision extends SubsystemBase {
 
   public static final Object imgLock = new Object();
   //Defining a function to calculate all of the vectors used
-    public void get_vision_vectors() {
-      //Getting the input from the camera
-      //Deciding what aliance we are on and calculating the vectors
-        if(DriverStation.getAlliance().toString() == "RED") {
-            SmartDashboard.putString("Alliance", "Red");
-            visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
-            if (!pipeline.filterContoursOutput().isEmpty()) {
-                Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-                diameter = r.width;
-                centerX = r.x + (r.width / 2);
-                centerY = r.y + (r.height / 2);
-            }
-            visionThread.start();
-            });
-        } else {
-            SmartDashboard.putString("Alliance", "Blue");
-            visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
-            if (!pipeline.filterContoursOutput().isEmpty()) {
-                Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-                diameter = r.width;
-                centerX = r.x + (r.width / 2);
-                centerY = r.y + (r.height / 2);
-            }
-            visionThread.start();
-            });
-        }
-    
+  public void get_vision_vectors() {
+    //Getting the input from the camera
+    //Deciding what aliance we are on and calculating the vectors
+    if(DriverStation.getAlliance().toString() == "RED") {
+      SmartDashboard.putString("Alliance", "Red");
+      visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
+      if (!pipeline.filterContoursOutput().isEmpty()) {
+        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        diameter = r.width;
+        centerX = r.x + (r.width / 2);
+        centerY = r.y + (r.height / 2);
+      }
+      visionThread.start();
+      });
+    } else {
+      SmartDashboard.putString("Alliance", "Blue");
+      visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
+      if (!pipeline.filterContoursOutput().isEmpty()) {
+        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+        diameter = r.width;
+        centerX = r.x + (r.width / 2);
+        centerY = r.y + (r.height / 2);
+      }
+      visionThread.start();
+      });
     }
+  }
 
   
   public static double get_radius() {
       return(diameter);
-    }
+  }
 
   public static double get_center(String input) {
-        if (input == "X") {
-            return(centerX);
-        } else {
-            return(centerY);
-        }
+    if (input == "X") {
+      return(centerX);
+    } else {
+      return(centerY);
     }
-
+  }
 }
