@@ -71,11 +71,11 @@ public class RobotContainer {
     	J12.whileHeld(new ElevatorPower(m_climber, "Elevator Positive"));
 		J11.whileHeld(new ElevatorPower(m_climber, "Elevator Negative"));
 		
-    	J10.whileHeld(new ElevatorPower(m_climber, "Articulate Positive"));
-		J9.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
+    	J10.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
+		J9.whileHeld(new ElevatorPower(m_climber, "Articulate Positive"));
 		
-    	J8.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
-		J7.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
+    	J8.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
+		J7.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
 		
 		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
