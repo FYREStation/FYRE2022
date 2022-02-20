@@ -5,14 +5,17 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private Spark motorShoot = new Spark(Constants.shooterMotor);
+  private TalonSRX motorShoot = new TalonSRX(Constants.shooterMotor);
   private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
   
   public Shooter() {
@@ -34,11 +37,11 @@ public class Shooter extends SubsystemBase {
 
   // Placeholder functions for OneRevolution
   public void spinForward(){
-    motorShoot.set(0.6);
+    motorShoot.set(ControlMode.PercentOutput, 0.6);
   }
   
   public void stopSpin(){
-    motorShoot.set(0.0);
+    motorShoot.set(ControlMode.PercentOutput, 0.0);
   }
 
   public double getDistance(){
