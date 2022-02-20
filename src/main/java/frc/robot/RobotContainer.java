@@ -49,6 +49,7 @@ public class RobotContainer {
   	private final JoystickButton J12 = new JoystickButton(manipulatorControl, 12);
 
 	//-> Series of defined subsystems. 
+	private final Vision m_vision = new Vision();
 	private final Shooter m_shooter = new Shooter();
 	private final Climber m_climber = new Climber();
 	private final Intake m_intake = new Intake();
@@ -84,6 +85,7 @@ public class RobotContainer {
 
 	//-> Passes autonomous command to Robot class. 
 	public Command getAutonomousCommand() {
+		new VisionProcessing(m_vision);
 		return m_autoCommand;
 	}
 }
