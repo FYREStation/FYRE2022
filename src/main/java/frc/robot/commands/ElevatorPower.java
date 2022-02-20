@@ -54,7 +54,7 @@ public class ElevatorPower extends CommandBase {
 				break;
 			case "Elevator Negative":
 				m_climber.setElevatorPower(-0.4);
-				m_climber.spinArticulate();
+				m_climber.spinElevator();
 				break;
 			default:
 				m_climber.stopEverything();
