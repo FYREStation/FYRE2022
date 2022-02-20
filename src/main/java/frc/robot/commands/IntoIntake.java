@@ -29,7 +29,7 @@ public class IntoIntake extends CommandBase {
 	public void initialize() {} 
 
 	@Override
-	//-> Runs intake motors continuously. 
+	//-> Switch statement for intake motor rotation. 
 	public void execute() {
     	switch(going_direction) {
 			case "Intake_Forward":

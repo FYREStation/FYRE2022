@@ -25,11 +25,9 @@ public class DriveTrain extends SubsystemBase {
 	private final Spark left_motorA = new Spark(Constants.leftDriveMotorA);
 	private final Spark right_motorA = new Spark(Constants.rightDriveMotorA);
 
-	//-> Places these motors into individual MotorControllerGroups. 
+	//-> Places these motors into individual MotorControllerGroups, then into DifferentialDrive. 
 	private final MotorControllerGroup left_motors = new MotorControllerGroup(left_motorA);
 	private final MotorControllerGroup right_motors = new MotorControllerGroup(right_motorA);
-
-	//-> Combines MotorControllerGroups into DifferentialDrive system. 
 	private final DifferentialDrive differential_drive = new DifferentialDrive(left_motors, right_motors);
 
 	private static int expiration_dur = 99999; //-> Edit expiration time. 

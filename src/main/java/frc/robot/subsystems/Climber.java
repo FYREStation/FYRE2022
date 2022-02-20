@@ -15,6 +15,7 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 /* import com.fasterxml.jackson.annotation.JsonCreator.Mode;
@@ -24,8 +25,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 // [ Functions ]
 public class Climber extends SubsystemBase {
 	//-> Defines a series of motors used in climber mechanism. 
-	TalonSRX hookMotor = new TalonSRX(Constants.chainMotor);
-	VictorSPX elevatorMotor = new VictorSPX(Constants.motorElevator);
+	VictorSPX hookMotor = new VictorSPX(Constants.chainMotor);
+	TalonSRX elevatorMotor = new TalonSRX(Constants.motorElevator);
 	CANSparkMax articulateMotorOne = new CANSparkMax(Constants.motorOneArticulate, MotorType.kBrushed);
 	CANSparkMax articulateMotorTwo = new CANSparkMax(Constants.motorTwoArticulate, MotorType.kBrushed);
 

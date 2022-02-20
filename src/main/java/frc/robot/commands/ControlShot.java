@@ -28,6 +28,7 @@ public class ControlShot extends CommandBase {
     @Override
     public void initialize() {}
 
+    //-> Switch statement to decide the direction of the motor.
     @Override
     public void execute() {
         switch(going_direction) {
@@ -42,6 +43,7 @@ public class ControlShot extends CommandBase {
     }
 
   	@Override
+    //-> Kills spin function.
   	public void end(boolean interrupted) {
     	m_shot.stopSpin();
   	}
