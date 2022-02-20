@@ -35,7 +35,7 @@ public class Driving extends CommandBase {
 	@Override
 	public void execute() {
 		//-> Grabs orientation of XboxController joysticks. 
-	 	y_left = RobotContainer.driverControl.getLeftY();
+	 	y_left = -RobotContainer.driverControl.getLeftY();
 		x_right = RobotContainer.driverControl.getRightX();
 
 		/* x_left = RobotContainer.driverControl.getLeftX();
@@ -49,8 +49,8 @@ public class Driving extends CommandBase {
 		}
 		rot_speed = -x_right;
 	
-		deadband(rot_speed); 
-		deadband(move_speed);
+		rot_speed = deadband(rot_speed); 
+		move_speed = deadband(move_speed);
 	
 		//-> Creates new power variables and applies them to tankDrive method, thus moving robot. 
 		double leftPower = -(rot_speed - move_speed);
