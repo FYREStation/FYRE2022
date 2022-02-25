@@ -39,10 +39,7 @@ public class Vision extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Center X", centerX);
-    SmartDashboard.putNumber("Center Y", centerY);
-    SmartDashboard.putNumber("Diameter", diameter);
-    SmartDashboard.putString("Testing", "Periodic");
+
   }
 
   @Override
@@ -58,24 +55,32 @@ public class Vision extends SubsystemBase {
     if(DriverStation.getAlliance().toString() == "RED") {
       SmartDashboard.putString("Alliance", "Red");
       visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
-      if (!pipeline.filterContoursOutput().isEmpty()) {
-        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-        diameter = r.width;
-        centerX = r.x + (r.width / 2);
-        centerY = r.y + (r.height / 2);
-      }
-      visionThread.start();
+        if (!pipeline.filterContoursOutput().isEmpty()) {
+          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+          diameter = r.width;
+          centerX = r.x + (r.width / 2);
+          centerY = r.y + (r.height / 2);
+          SmartDashboard.putNumber("Center X", centerX);
+          SmartDashboard.putNumber("Center Y", centerY);
+          SmartDashboard.putNumber("Diameter", diameter);
+          SmartDashboard.putString("Testing", "Periodic");
+        }
+        visionThread.start();
       });
     } else {
       SmartDashboard.putString("Alliance", "Blue");
       visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
-      if (!pipeline.filterContoursOutput().isEmpty()) {
-        Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-        diameter = r.width;
-        centerX = r.x + (r.width / 2);
-        centerY = r.y + (r.height / 2);
-      }
-      visionThread.start();
+        if (!pipeline.filterContoursOutput().isEmpty()) {
+          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+          diameter = r.width;
+          centerX = r.x + (r.width / 2);
+          centerY = r.y + (r.height / 2);
+          SmartDashboard.putNumber("Center X", centerX);
+          SmartDashboard.putNumber("Center Y", centerY);
+          SmartDashboard.putNumber("Diameter", diameter);
+          SmartDashboard.putString("Testing", "Periodic");
+        }
+        visionThread.start();
       });
     }
   }
