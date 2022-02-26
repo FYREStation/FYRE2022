@@ -12,11 +12,15 @@ package frc.robot.subsystems;
 // // [ Files ] 
 import frc.robot.Constants;
 // // [ Classes ] 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive; 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 // [ Functions ] 
 public class DriveTrain extends SubsystemBase {
@@ -36,6 +40,8 @@ public class DriveTrain extends SubsystemBase {
 	//-> Creates new encoder variables to be used in Autonomous. 
 	private final Encoder left_encoder = new Encoder(Constants.driveLeftEncoderA, Constants.driveLeftEncoderB, true, Encoder.EncodingType.k4X);
 	private final Encoder right_encoder = new Encoder(Constants.driveRightEncoderA, Constants.driveRightEncoderB, true, Encoder.EncodingType.k4X);
+
+	private final Gyro drive_gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
 
 	//-> Sets a series of constants on motors. 
 	public DriveTrain (){
@@ -97,8 +103,18 @@ public class DriveTrain extends SubsystemBase {
 		return 0.0; 
 	}
 
+	public double getGyro(){
+		return drive_gyro.getAngle();
+	}
+
+	public void resetGyro(){
+		drive_gyro.reset();
+	}
+
 	@Override
-	public void periodic() {}
+	public void periodic() {
+		SmartDashboard.putNumber("GYRO Reading:", drive_gyro.getAngle());
+	}
 
 	@Override
 	public void simulationPeriodic() {}
