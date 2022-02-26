@@ -6,12 +6,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import org.opencv.core.Mat;
 //Import all of the packages to assist with vision processing
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -35,7 +33,6 @@ public class Vision extends SubsystemBase {
   
   /** Creates a new ExampleSubsystem. */
   public Vision() {
-    CameraServer.startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
   }
 
@@ -46,7 +43,6 @@ public class Vision extends SubsystemBase {
     SmartDashboard.putNumber("Center Y", centerY);
     SmartDashboard.putNumber("Diameter", diameter);
     SmartDashboard.putString("Testing", "Periodic");
-    System.out.println(centerX);
   }
 
   @Override
@@ -64,31 +60,37 @@ public class Vision extends SubsystemBase {
       visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
           Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-          diameter = r.width;
-          centerX = r.x + (r.width / 2);
-          centerY = r.y + (r.height / 2);
-          SmartDashboard.putNumber("Center X", centerX);
-          SmartDashboard.putNumber("Center Y", centerY);
-          SmartDashboard.putNumber("Diameter", diameter);
-          SmartDashboard.putString("Testing", "Periodic");
+          synchronized(imgLock){
+            diameter = r.width;
+            centerX = r.x + (r.width / 2);
+            centerY = r.y + (r.height / 2);
+            SmartDashboard.putNumber("Center X", centerX);
+            SmartDashboard.putNumber("Center Y", centerY);
+            SmartDashboard.putNumber("Diameter", diameter);
+            SmartDashboard.putString("Testing", "Periodic");
+            System.out.println(centerX);
+          } 
         }
-        visionThread.start();
       });
+      visionThread.start();
     } else {
       SmartDashboard.putString("Alliance", "Blue");
       visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
           Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-          diameter = r.width;
-          centerX = r.x + (r.width / 2);
-          centerY = r.y + (r.height / 2);
-          SmartDashboard.putNumber("Center X", centerX);
-          SmartDashboard.putNumber("Center Y", centerY);
-          SmartDashboard.putNumber("Diameter", diameter);
-          SmartDashboard.putString("Testing", "Periodic");
+          synchronized(imgLock) {
+            diameter = r.width;
+            centerX = r.x + (r.width / 2);
+            centerY = r.y + (r.height / 2);
+            SmartDashboard.putNumber("Center X", centerX);
+            SmartDashboard.putNumber("Center Y", centerY);
+            SmartDashboard.putNumber("Diameter", diameter);
+            SmartDashboard.putString("Testing", "Periodic");
+            System.out.println(centerX);
+          }
         }
-        visionThread.start();
       });
+      visionThread.start();
     }
   }
 

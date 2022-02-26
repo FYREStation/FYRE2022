@@ -28,11 +28,11 @@ public class Intake extends SubsystemBase {
     public void simulationPeriodic(){}
   
     public void run_intake_forward() {
-        motorIntake.set(0.6);
+        motorIntake.set(0.8);
     }
 
     public void run_intake_backward() {
-        motorIntake.set(-0.6);
+        motorIntake.set(-0.8);
     }
 
     public void stopIntake() {

@@ -36,7 +36,7 @@ public class RobotContainer {
 
 	//-> Series of declared Joystick buttons for controlling purposes. 
 	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
-	//private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); 
+	private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); 
 	private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  
 	//private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
 	private final JoystickButton J5 = new JoystickButton(manipulatorControl, 5);
@@ -79,13 +79,15 @@ public class RobotContainer {
 		
 		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
+
+		J2.whileHeld(new VisionProcessing(m_vision));
 		
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
 	}
 
 	//-> Passes autonomous command to Robot class. 
 	public Command getAutonomousCommand() {
-		new VisionProcessing(m_vision);
+
 		return m_autoCommand;
 	}
 }
