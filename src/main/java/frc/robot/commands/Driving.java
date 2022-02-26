@@ -43,7 +43,7 @@ public class Driving extends CommandBase {
 
 		//-> Checks if robot is in Tank mode; sets new movement variables accordingly. 
 		if (Constants.isTank) {
-			move_speed = y_left;	
+			move_speed = -y_left;	
 		} else {
 			move_speed = y_left;
 		}
@@ -56,8 +56,9 @@ public class Driving extends CommandBase {
 		double leftPower = -(rot_speed - move_speed);
 		double rightPower = -(rot_speed + move_speed);
 
-		drive_train.tankDrive(Constants.throttle * leftPower, Constants.throttle * rightPower);
-		// drive_train.arcadeDrive(Constants.throttle * x_right * Math.abs(x_right), Constants.throttle * y_left * Math.abs(y_left)); //-> Unused arcade drive alternative.
+		// drive_train.tankDrive(Constants.throttle * leftPower, Constants.throttle * rightPower);
+		drive_train.arcadeDrive(Constants.throttle * x_right , Constants.throttle * -y_left); //-> Unused arcade drive alternative.
+		System.out.println(-y_left * Constants.throttle + " = left joystick movement // " + x_right * Constants.throttle + " = right joystick movement");
 	}
 
 	@Override
