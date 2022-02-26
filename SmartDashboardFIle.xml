@@ -1,0 +1,37 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="GYRO Angle:" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="554" y="408"/>
+	</widget>
+	<widget field="GYRO Reading:" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="558" y="78"/>
+	</widget>
+	<widget field="Shooter Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1115" y="146"/>
+	</widget>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1108" y="286"/>
+		<height>19</height>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="57" y="35"/>
+		<width>460</width>
+		<height>344</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="Diameter" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1122" y="238"/>
+	</widget>
+	<widget field="Testing" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1126" y="107"/>
+	</widget>
+	<widget field="Center Y" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1145" y="82"/>
+	</widget>
+	<widget field="Center X" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1130" y="53"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
