@@ -58,8 +58,6 @@ public class Autonomous extends CommandBase {
     @Override
     public void end(boolean interrupted) {}
 
-
-
     // Short movement command. Not fully functional. 
     public void auto_distance(double distance, boolean forward) { 
         double position = drive_train.get_encoder_distance("right");
