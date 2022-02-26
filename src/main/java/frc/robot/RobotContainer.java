@@ -83,6 +83,7 @@ public class RobotContainer {
 		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
 		
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
+		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
 	}
 
 	//-> Passes autonomous command to Robot class. 
