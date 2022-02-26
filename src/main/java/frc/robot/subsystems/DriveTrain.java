@@ -113,7 +113,7 @@ public class DriveTrain extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		SmartDashboard.putNumber("GYRO Angle:", drive_gyro.getAngle());
+		SmartDashboard.putNumber("GYRO Angle Chart:", drive_gyro.getAngle());
 		SmartDashboard.putNumber("GYRO Reading:", drive_gyro.getAngle());
 	}
 
