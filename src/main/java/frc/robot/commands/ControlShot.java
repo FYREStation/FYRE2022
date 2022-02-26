@@ -35,6 +35,9 @@ public class ControlShot extends CommandBase {
             case "Shooter_Forward":
                 m_shot.spinForward();
                 break;
+            case "Shooter_Backward":
+                m_shot.spinBackward();
+                break;
             default:
                 m_shot.stopSpin();
                 break;
