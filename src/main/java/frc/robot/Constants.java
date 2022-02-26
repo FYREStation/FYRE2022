@@ -12,8 +12,14 @@ in a public states. Do not put anything functional in this class. */
 // [ Package ] 
 package frc.robot;
 
+import org.opencv.core.Mat;
+
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.raw.RawSink;
+import edu.wpi.first.cscore.raw.RawSource;
 
 // [ Functions ] 
 public final class Constants {
@@ -47,6 +53,6 @@ public final class Constants {
     public static int driveLeftEncoderB = 5; 
 
     // TODO: Add sensors (gyro, encoder, and cameras for example)
-
-    public static UsbCamera camera = CameraServer.startAutomaticCapture();
+    public static UsbCamera camera = new UsbCamera("camera", 0);
+    //public static UsbCamera bazinga = CameraServer.startAutomaticCapture();
 }

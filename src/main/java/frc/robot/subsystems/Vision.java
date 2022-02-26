@@ -6,10 +6,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import org.opencv.core.Mat;
 //Import all of the packages to assist with vision processing
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -33,13 +35,18 @@ public class Vision extends SubsystemBase {
   
   /** Creates a new ExampleSubsystem. */
   public Vision() {
+    CameraServer.startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
+    SmartDashboard.putNumber("Center X", centerX);
+    SmartDashboard.putNumber("Center Y", centerY);
+    SmartDashboard.putNumber("Diameter", diameter);
+    SmartDashboard.putString("Testing", "Periodic");
+    System.out.println(centerX);
   }
 
   @Override
