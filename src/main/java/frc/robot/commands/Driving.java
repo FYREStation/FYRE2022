@@ -58,7 +58,7 @@ public class Driving extends CommandBase {
 
 		// drive_train.tankDrive(Constants.throttle * leftPower, Constants.throttle * rightPower);
 		drive_train.arcadeDrive(Constants.throttle * x_right , Constants.throttle * y_left); //-> Unused arcade drive alternative.
-		System.out.println(-y_left * Constants.throttle + " = left joystick movement // " + x_right * Constants.throttle + " = right joystick movement");
+		//System.out.println(-y_left * Constants.throttle + " = left joystick movement // " + x_right * Constants.throttle + " = right joystick movement");
 	}
 
 	@Override
