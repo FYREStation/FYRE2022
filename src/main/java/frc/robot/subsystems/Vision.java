@@ -60,16 +60,22 @@ public class Vision extends SubsystemBase {
       SmartDashboard.putString("Alliance", "Red");
       visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
-          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-          synchronized(imgLock){
-            diameter = r.width;
-            centerX = r.x + (r.width / 2);
-            centerY = r.y + (r.height / 2);
-            SmartDashboard.putNumber("Center X", centerX);
-            SmartDashboard.putNumber("Center Y", centerY);
-            SmartDashboard.putNumber("Diameter", diameter);
-            SmartDashboard.putString("Testing", "Periodic");
-            System.out.println(centerX);
+          try {
+            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+            synchronized(imgLock){
+              diameter = r.width;
+              centerX = r.x + (r.width / 2);
+              centerY = r.y + (r.height / 2);
+              SmartDashboard.putNumber("Center X", centerX);
+              SmartDashboard.putNumber("Center Y", centerY);
+              SmartDashboard.putNumber("Diameter", diameter);
+              SmartDashboard.putString("Testing", "Periodic");
+              System.out.println(centerX);
+              Thread.sleep(500);
+            }
+          } 
+          catch (Exception e) {
+            System.out.println("Vision Detection did not run! F**K!!!");
           } 
         }
       });
@@ -77,16 +83,22 @@ public class Vision extends SubsystemBase {
       SmartDashboard.putString("Alliance", "Blue");
       visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
-          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-          synchronized(imgLock) {
-            diameter = r.width;
-            centerX = r.x + (r.width / 2);
-            centerY = r.y + (r.height / 2);
-            SmartDashboard.putNumber("Center X", centerX);
-            SmartDashboard.putNumber("Center Y", centerY);
-            SmartDashboard.putNumber("Diameter", diameter);
-            SmartDashboard.putString("Testing", "Periodic");
-            System.out.println(centerX);
+          try {
+            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+            synchronized(imgLock) {
+              diameter = r.width;
+              centerX = r.x + (r.width / 2);
+              centerY = r.y + (r.height / 2);
+              SmartDashboard.putNumber("Center X", centerX);
+              SmartDashboard.putNumber("Center Y", centerY);
+              SmartDashboard.putNumber("Diameter", diameter);
+              SmartDashboard.putString("Testing", "Periodic");
+              System.out.println(centerX);
+              Thread.sleep(500);
+            }
+          }
+          catch (Exception e) {
+            System.out.println("Vision Detection did not run! F**K!!!");
           }
         }
       });
