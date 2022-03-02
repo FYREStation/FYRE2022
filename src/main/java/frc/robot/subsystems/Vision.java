@@ -33,7 +33,6 @@ public class Vision extends SubsystemBase {
   
   /** Creates a new ExampleSubsystem. */
   public Vision() {
-    visionThread.start();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
   }
 
@@ -79,6 +78,8 @@ public class Vision extends SubsystemBase {
           } 
         }
       });
+      visionThread.start();
+      
     } else {
       SmartDashboard.putString("Alliance", "Blue");
       visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
@@ -102,6 +103,7 @@ public class Vision extends SubsystemBase {
           }
         }
       });
+      visionThread.start();
     }
   }
 
