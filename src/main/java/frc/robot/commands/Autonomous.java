@@ -48,10 +48,13 @@ public class Autonomous extends CommandBase {
 
     @Override
     public boolean isFinished() { 
+        /*
         if(PIDAutoController.atSetpoint()){
             System.out.println("REACHED SETPOINT!!!");
             return true;   
         }
+        return false;
+        */
         return false;
     }
 
