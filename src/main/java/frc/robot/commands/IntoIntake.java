@@ -39,7 +39,7 @@ public class IntoIntake extends CommandBase {
 				m_intake.run_intake_backward();
 				break;
 			default:
-				m_intake.stopIntake();
+				m_intake.run_intake_normal();
 				break;
 		}
   	}
