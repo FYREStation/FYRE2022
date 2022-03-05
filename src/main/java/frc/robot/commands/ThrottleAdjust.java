@@ -37,6 +37,8 @@ public class ThrottleAdjust extends CommandBase {
                 Constants.throttle += increment; 
             }
         }
+
+        System.out.println(Constants.throttle + " : THROTTLE");
     }
 
     @Override
