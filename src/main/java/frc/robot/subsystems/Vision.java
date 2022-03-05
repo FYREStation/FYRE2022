@@ -55,7 +55,6 @@ public class Vision extends SubsystemBase {
   public void get_vision_vectors() {
     //Getting the input from the camera
     //Deciding what aliance we are on and calculating the vectors
-    if(DriverStation.getAlliance().toString() == "RED") {
       SmartDashboard.putString("Alliance", "Red");
       visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
@@ -70,42 +69,16 @@ public class Vision extends SubsystemBase {
               SmartDashboard.putNumber("Diameter", diameter);
               SmartDashboard.putString("Testing", "Periodic");
               System.out.println(centerX);
-              Thread.sleep(10000);
+              Thread.sleep(100);
             }
           } 
           catch (Exception e) {
             System.out.println("Vision Detection did not run! F**K!!!");
           } 
-        }
-      });
-      visionThread.start();
-      
-    } else {
-      SmartDashboard.putString("Alliance", "Blue");
-      visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
-        if (!pipeline.filterContoursOutput().isEmpty()) {
-          try {
-            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-            synchronized(imgLock) {
-              diameter = r.width;
-              centerX = r.x + (r.width / 2);
-              centerY = r.y + (r.height / 2);
-              SmartDashboard.putNumber("Center X", centerX);
-              SmartDashboard.putNumber("Center Y", centerY);
-              SmartDashboard.putNumber("Diameter", diameter);
-              SmartDashboard.putString("Testing", "Periodic");
-              System.out.println(centerX);
-              Thread.sleep(10000);
-            }
-          }
-          catch (Exception e) {
-            System.out.println("Vision Detection did not run! F**K!!!");
-          }
         }
       });
       visionThread.start();
     }
-  }
 
   
   public static double get_radius() {
