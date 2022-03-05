@@ -65,7 +65,7 @@ public class RobotContainer {
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {
 		m_drivetrain.setDefaultCommand(new Driving(m_drivetrain));
-		//m_intake_spin.setDefaultCommand(new ThrottleAdjust());
+		// m_intake_spin.setDefaultCommand(new ThrottleAdjust());
     	configureButtonBindings();
 	}
 
@@ -83,8 +83,8 @@ public class RobotContainer {
 		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
 
-		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
-		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
+		//J2.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
+		J1.whileHeld(new OneShot(m_shooter, m_intake));
 	}
 
 	//-> Passes autonomous command to Robot class. 
