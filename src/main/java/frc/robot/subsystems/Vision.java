@@ -70,7 +70,7 @@ public class Vision extends SubsystemBase {
               SmartDashboard.putNumber("Diameter", diameter);
               SmartDashboard.putString("Testing", "Periodic");
               System.out.println(centerX);
-              Thread.sleep(500);
+              Thread.sleep(10000);
             }
           } 
           catch (Exception e) {
@@ -82,7 +82,7 @@ public class Vision extends SubsystemBase {
       
     } else {
       SmartDashboard.putString("Alliance", "Blue");
-      visionThread = new VisionThread(camera, new BlueGripPipeline(), pipeline -> {
+      visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
         if (!pipeline.filterContoursOutput().isEmpty()) {
           try {
             Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
@@ -95,7 +95,7 @@ public class Vision extends SubsystemBase {
               SmartDashboard.putNumber("Diameter", diameter);
               SmartDashboard.putString("Testing", "Periodic");
               System.out.println(centerX);
-              Thread.sleep(500);
+              Thread.sleep(10000);
             }
           }
           catch (Exception e) {

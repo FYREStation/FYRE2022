@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,6 +21,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+
+  private final Vision m_vision = new Vision();
 
   private RobotContainer m_robotContainer;
 
@@ -35,6 +39,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    new VisionProcessing(m_vision);
   }
 
   /**
@@ -74,20 +79,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    /* //THIS SECTION OF CODE CAN BE MOVED!!
-    //Tells the robot to face the targeted ball
-    //Note: At this time, I do not fully understand how to make 
-    //motors move, and do not want to screw anything up, so I will 
-    //leave placeholders for those actions
-    VisionProcessing.get_vision_vectors();
-    VisionProcessing.get_radius();
-    if (VisionProcessing.get_center("X") <= 150) {
-      //Code here to make motors spin the robot counterclockwise
-    } else if (VisionProcessing.get_center("X") >= 170) {
-      //Code here to make motors spun the robot clockwise
-    } else {
-      //Stop spinning, maybe move straight
-    }  */ 
   }
 
   @Override
