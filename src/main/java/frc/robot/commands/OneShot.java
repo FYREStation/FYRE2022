@@ -21,7 +21,7 @@ public class OneShot extends CommandBase {
     //-> New variables to set subsystems and counting integers. 
     private final Intake m_intake; 
     private final Shooter m_shot;
-    private final Spark m_gatekeeper = new Spark(Constants.gatekeeperMotor);
+    //private final Spark m_gatekeeper = new Spark(Constants.gatekeeperMotor);
 
     int debounce = 0; 
   
@@ -42,7 +42,7 @@ public class OneShot extends CommandBase {
         m_shot.spinBackward();
         if (debounce == 30) {
             m_intake.run_intake_forward();
-            m_gatekeeper.set(0.75);
+            //m_gatekeeper.set(0.75);
         }
     }
 
@@ -53,7 +53,7 @@ public class OneShot extends CommandBase {
     
         m_shot.stopSpin();
         m_intake.stopIntake();
-        m_gatekeeper.set(0.0);
+        //m_gatekeeper.set(0.0);
   	}
 
   	@Override
