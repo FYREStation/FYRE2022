@@ -80,7 +80,7 @@ public class RobotContainer {
 		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
 
-		//J2.whileHeld(new VisionProcessing(m_vision));
+		J2.whileHeld(new VisionProcessing(m_vision));
 		
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
 	}
