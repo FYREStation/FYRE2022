@@ -35,9 +35,12 @@ public class Intake extends SubsystemBase {
         motorIntake.set(0.75);
     }
 
+    public void run_intake_normal() {
+        motorIntake.set(-0.1); 
+    }
+
     public void stopIntake() {
         motorIntake.set(0.0);
     }
-
 
 }

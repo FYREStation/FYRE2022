@@ -53,6 +53,8 @@ public class RobotContainer {
 	private final Shooter m_shooter = new Shooter();
 	private final Climber m_climber = new Climber();
 	private final Intake m_intake = new Intake();
+	//private final Intake m_intake_spin = new Intake();
+
 	private static DriveTrain m_drivetrain = new DriveTrain();
 	// private final Intake m_intake = new Intake();
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -63,6 +65,7 @@ public class RobotContainer {
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {
 		m_drivetrain.setDefaultCommand(new Driving(m_drivetrain));
+		// m_intake_spin.setDefaultCommand(new ThrottleAdjust());
     	configureButtonBindings();
 	}
 
@@ -80,8 +83,8 @@ public class RobotContainer {
 		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
 
-		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
-		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
+		//J2.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
+		J1.whileHeld(new OneShot(m_shooter, m_intake));
 	}
 
 	//-> Passes autonomous command to Robot class. 

@@ -24,7 +24,8 @@ public final class Constants {
     public static int intakeMotor = 2;
 
     // [ Shooter Ports ] 
-    public static int shooterMotor = 5; 
+    public static int shooterMotor = 5;
+    public static int gatekeeperMotor = 6;  
     public static int shooterEncoderA = 0;
     public static int shooterEncoderB = 1;
 

@@ -11,15 +11,19 @@ package frc.robot.commands;
 // [ Imports ] 
 // // [ Files ]
 import frc.robot.subsystems.*;
+import edu.wpi.first.math.controller.PIDController;
 // // [ Classes ]
 import edu.wpi.first.wpilibj2.command.CommandBase;
 // import frc.robot.Constants;
 // import frc.robot.commands.*;
+import edu.wpi.first.math.MathUtil;
+
 
 // [ Functions ]
 public class Autonomous extends CommandBase {
     @SuppressWarnings("unused")
     private final DriveTrain drive_train; 
+    private PIDController PIDAutoController;
 
     public Autonomous(DriveTrain dt) { 
         drive_train = dt; 
@@ -28,17 +32,30 @@ public class Autonomous extends CommandBase {
 
     @Override
     public void initialize() {
-        auto_distance(1, true);
+        //auto_distance(1, true);
+        //drive_train.resetGyro();
+        PIDAutoController = new PIDController(0.0035,0.0005,0.0001);
+        PIDAutoController.setSetpoint(180);
+        PIDAutoController.setTolerance(1);
     }
 
     @Override   
     public void execute() { 
+
+        //drive_train.tankDrive(MathUtil.clamp(PIDAutoController.calculate(drive_train.getGyro()), -0.85, 0.85), MathUtil.clamp(PIDAutoController.calculate(drive_train.getGyro()), -0.85, 0.85));
        
     }
 
     @Override
     public boolean isFinished() { 
-        return false; 
+        /*
+        if(PIDAutoController.atSetpoint()){
+            System.out.println("REACHED SETPOINT!!!");
+            return true;   
+        }
+        return false;
+        */
+        return false;
     }
 
     @Override
@@ -76,4 +93,4 @@ public class Autonomous extends CommandBase {
             }
         }
     }
-}
+} 
