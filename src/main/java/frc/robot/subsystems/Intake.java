@@ -1,46 +1,47 @@
 /*
-   [ Intake ]
-*/
+	[ subsystems / Intake.java ]
+	Container for all intake commands 
+	and utilities. 
 
-// Grab package for frc.robot
+*/ 
+
+// [ Package ] 
 package frc.robot.subsystems;
 
-// Imports a series of basic APIs
+// [ Imports ]
+// // [ Files ] 
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj2.command.SubsystemBase; // Subsystem framework 
+// // [ Classes ] 
+import edu.wpi.first.wpilibj2.command.SubsystemBase; 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
-// Copy class Subsystem base to Intake
+// [ Functions ] 
 public class Intake extends SubsystemBase {
-
+    //-> Pass in intake motor for flywheel bar. 
     private Spark motorIntake = new Spark(Constants.intakeMotor);
-
-    public Intake (){
-        
-    }
-
-    @Override
-    public void periodic(){
-
-    }
-
-    @Override
-    public void simulationPeriodic(){}
   
-    public void run_intake_forward() {
+    //-> Series of motor speed commands for adjusting I/O. 
+    public void runIntakeForward() {
         motorIntake.set(-0.75);
     }
 
-    public void run_intake_backward() {
+    public void runIntakeBackward() {
         motorIntake.set(0.75);
     }
 
-    public void run_intake_normal() {
+    public void runIntakeNormal() {
         motorIntake.set(-0.1); 
     }
 
+    //-> Stop motor command. 
     public void stopIntake() {
         motorIntake.set(0.0);
     }
+
+    @Override
+    public void periodic() {}
+
+    @Override
+    public void simulationPeriodic() {}
 
 }

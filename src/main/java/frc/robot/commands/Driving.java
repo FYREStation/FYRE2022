@@ -18,12 +18,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
 public class Driving extends CommandBase {
-	private DriveTrain drive_train;
-	private double y_left, x_right;
+	private DriveTrain mDriveTrain;
+	private double yLeft, xRight;
 
-	public Driving(DriveTrain m_drivetrain) {
-		drive_train = m_drivetrain;
-		addRequirements(drive_train);
+	public Driving(DriveTrain subsystem) {
+		mDriveTrain = subsystem;
+		addRequirements(subsystem);
     }
 
 	@Override
@@ -32,12 +32,12 @@ public class Driving extends CommandBase {
 	@Override
 	public void execute() {
 		//-> Grabs orientation of XboxController joysticks. 
-	 	y_left = -RobotContainer.driverControl.getLeftY();
-		x_right = RobotContainer.driverControl.getRightX();
+		yLeft = -RobotContainer.driverControl.getLeftY();
+		xRight = RobotContainer.driverControl.getRightX();
 
-		//-> Passes joystick orientation into arcade_drive and moves robot accordingly. 
-		drive_train.arcadeDrive(Constants.throttle * deadband(x_right) , Constants.throttle * deadband(y_left)); //-> Unused arcade drive alternative.
-		//System.out.println(-y_left * Constants.throttle + " = left joystick movement // " + x_right * Constants.throttle + " = right joystick movement");
+		//-> Passes joystick orientation into arcadeDrive and moves robot accordingly. 
+		mDriveTrain.arcadeDrive(Constants.throttle * deadband(xRight) , Constants.throttle * deadband(yLeft));
+		//System.out.println(-yLeft * Constants.throttle + " = left joystick movement // " + xRight * Constants.throttle + " = right joystick movement"); //-> Printout statement for throttle speed. 
 	}
 
 	@Override

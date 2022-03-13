@@ -1,34 +1,36 @@
 /*
-    [ commands / ControlShot.java ]
-    Controller of firing balls in 
-    pinball shooting mechanism.  
+    [ commands / OneShot.java ]
+    Combination of three motors to
+    create fluid shot progression. 
 
 */ 
 
 // [ Package ]
 package frc.robot.commands;
 
-import frc.robot.Constants;
 // [ Imports ] 
 // // [ Files ] 
+// import frc.robot.Constants;
 import frc.robot.subsystems.*;
 // // [ Classes ]
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+// import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
+//-> Uncomment out Constants + Spark when gatekeeper motor is being run. 
 
 // [ Functions ]
 public class OneShot extends CommandBase {
     //-> New variables to set subsystems and counting integers. 
-    private final Intake m_intake; 
-    private final Shooter m_shot;
-    //private final Spark m_gatekeeper = new Spark(Constants.gatekeeperMotor);
+    private final Intake mIntake; 
+    private final Shooter mShooter;
+    // private final Spark mGatekeeper = new Spark(Constants.gatekeeperMotor);
 
     int debounce = 0; 
   
-    public OneShot(Shooter s_subsystem, Intake i_subsystem) {
-        m_shot = s_subsystem;
-        m_intake = i_subsystem; 
-    	addRequirements(s_subsystem, i_subsystem);
+    public OneShot(Shooter sSubsystem, Intake iSubsystem) {
+        mShooter = sSubsystem;
+        mIntake = iSubsystem; 
+    	addRequirements(sSubsystem, iSubsystem);
     }
 
     @Override
@@ -39,10 +41,10 @@ public class OneShot extends CommandBase {
     public void execute() {
         debounce++;
 
-        m_shot.spinBackward();
+        mShooter.spinBackward();
         if (debounce == 30) {
-            m_intake.run_intake_forward();
-            //m_gatekeeper.set(0.75);
+            mIntake.runIntakeForward();
+            //mGatekeeper.set(0.75);
         }
     }
 
@@ -51,9 +53,9 @@ public class OneShot extends CommandBase {
   	public void end(boolean interrupted) {
         debounce = 0;
     
-        m_shot.stopSpin();
-        m_intake.stopIntake();
-        //m_gatekeeper.set(0.0);
+        mShooter.stopSpin();
+        mIntake.stopIntake();
+        //mGatekeeper.set(0.0);
   	}
 
   	@Override

@@ -22,76 +22,76 @@ import edu.wpi.first.wpilibj.Encoder;
 public class DriveTrain extends SubsystemBase {
 
 	//-> Grabs motors from roboRIO ports using Constant values. 
-	private final Spark left_motorA = new Spark(Constants.leftDriveMotorA);
-	private final Spark right_motorA = new Spark(Constants.rightDriveMotorA);
+	private final Spark leftMotorA = new Spark(Constants.leftDriveMotorA);
+	private final Spark rightMotorA = new Spark(Constants.rightDriveMotorA);
 
 	//-> Places these motors into individual MotorControllerGroups, then into DifferentialDrive. 
-	private final MotorControllerGroup left_motors = new MotorControllerGroup(left_motorA);
-	private final MotorControllerGroup right_motors = new MotorControllerGroup(right_motorA);
-	private final DifferentialDrive differential_drive = new DifferentialDrive(left_motors, right_motors);
+	private final MotorControllerGroup leftMotors = new MotorControllerGroup(leftMotorA);
+	private final MotorControllerGroup rightMotors = new MotorControllerGroup(rightMotorA);
+	private final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
-	private static int expiration_dur = 99999; //-> Edit expiration time. 
-	private static boolean safety_toggle = false; //-> Edit safety toggle. 
+	private static int expirationDur = 99999; //-> Edit expiration time. 
+	private static boolean safetyToggle = false; //-> Edit safety toggle. 
 
 	//-> Creates new encoder variables to be used in Autonomous. 
-	private final Encoder left_encoder = new Encoder(Constants.driveLeftEncoderA, Constants.driveLeftEncoderB, true, Encoder.EncodingType.k4X);
-	private final Encoder right_encoder = new Encoder(Constants.driveRightEncoderA, Constants.driveRightEncoderB, true, Encoder.EncodingType.k4X);
+	private final Encoder leftEncoder = new Encoder(Constants.driveLeftEncoderA, Constants.driveLeftEncoderB, true, Encoder.EncodingType.k4X);
+	private final Encoder rightEncoder = new Encoder(Constants.driveRightEncoderA, Constants.driveRightEncoderB, true, Encoder.EncodingType.k4X);
 
 	//-> Sets a series of constants on motors. 
-	public DriveTrain (){
-		left_motorA.setExpiration(expiration_dur);
-		right_motorA.setExpiration(expiration_dur);
-		differential_drive.setExpiration(expiration_dur);
+	public DriveTrain() {
+		leftMotorA.setExpiration(expirationDur);
+		rightMotorA.setExpiration(expirationDur);
+		differentialDrive.setExpiration(expirationDur);
 
-		left_motorA.setSafetyEnabled(safety_toggle);
-		right_motorA.setSafetyEnabled(safety_toggle);
-		differential_drive.setSafetyEnabled(safety_toggle);
+		leftMotorA.setSafetyEnabled(safetyToggle);
+		rightMotorA.setSafetyEnabled(safetyToggle);
+		differentialDrive.setSafetyEnabled(safetyToggle);
     }
 
 	//-> Two drive functions for arcade drive method and tank drive method. 
-	public void arcadeDrive (double move_speed, double rot_speed){
+	public void arcadeDrive (double moveSpeed, double rotSpeed){
 		if (Constants.invertedDrive) {
-			differential_drive.arcadeDrive(move_speed, rot_speed);
+			differentialDrive.arcadeDrive(moveSpeed, rotSpeed);
 		} else {
-			differential_drive.arcadeDrive(-move_speed, rot_speed);
+			differentialDrive.arcadeDrive(-moveSpeed, rotSpeed);
 		}
 	}
 
-	public void tankDrive (double move_speed_l, double move_speed_r) {
+	public void tankDrive (double moveSpeedL, double moveSpeedR) {
 		if (Constants.invertedDrive) {            
-			differential_drive.tankDrive(move_speed_l, move_speed_r);
+			differentialDrive.tankDrive(moveSpeedL, moveSpeedR);
 		} else {
-			differential_drive.tankDrive(-move_speed_l, -move_speed_r);
+			differentialDrive.tankDrive(-moveSpeedL, -moveSpeedR);
 		}    
 	}
 
 	//-> Methods to get different functions out of encoders.
-	public double get_encoder(String side) {
+	public double getEncoder(String side) {
 		if (side == "left") { 
-			return this.left_encoder.get(); 
+			return this.leftEncoder.get(); 
 		} else if (side == "right") { 
-			return this.right_encoder.get(); 
+			return this.rightEncoder.get(); 
 		}
 
 		return 0.0; 
 	}
 
-	public void reset_encoder(String side) {
+	public void resetEncoder(String side) {
 		if (side == "left") {
-			left_encoder.reset(); 
+			leftEncoder.reset(); 
 		} else if (side == "right") {
-			right_encoder.reset(); 
+			rightEncoder.reset(); 
 		} else if (side == "both") { 
-			left_encoder.reset(); 
-			right_encoder.reset(); 
+			leftEncoder.reset(); 
+			rightEncoder.reset(); 
 		}
 	}
 
-	public double get_encoder_distance(String side) {
+	public double getEncoderDistance(String side) {
 		if (side == "left") { 
-			return left_encoder.getDistance(); 
+			return leftEncoder.getDistance(); 
 		} else if (side == "right") {
-			return right_encoder.getDistance(); 
+			return rightEncoder.getDistance(); 
 		}
 
 		return 0.0; 

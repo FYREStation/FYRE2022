@@ -16,11 +16,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
 public class ElevatorPower extends CommandBase {
-  	private final Climber m_climber;
+  	private final Climber mClimber;
 	String sectionPower;
 	  
 	public ElevatorPower(Climber subsystem, String section) {
-		m_climber = subsystem;
+		mClimber = subsystem;
 		sectionPower = section;
 		addRequirements(subsystem);
 	}
@@ -32,40 +32,40 @@ public class ElevatorPower extends CommandBase {
 	@Override
 	public void execute() {
 		switch (sectionPower) {
-			case "Hook Positive":
-				m_climber.setHookPower(1.0);
-				m_climber.spinHook();
+			case "HookPositive":
+				mClimber.setHookPower(0.95);
+				mClimber.spinHook();
 				break;
-			case "Hook Negative":
-				m_climber.setHookPower(-1.0);
-				m_climber.spinHook();
+			case "HookNegative":
+				mClimber.setHookPower(-0.95);
+				mClimber.spinHook();
 				break;
-			case "Articulate Positive":
-				m_climber.setArticulatePower(0.4);
-				m_climber.spinArticulate();
+			case "ArticulatePositive":
+				mClimber.setArticulatePower(0.4);
+				mClimber.spinArticulate();
 				break;
-			case "Articulate Negative":
-				m_climber.setArticulatePower(-0.4);
-				m_climber.spinArticulate();
+			case "ArticulateNegative":
+				mClimber.setArticulatePower(-0.4);
+				mClimber.spinArticulate();
 				break;
-			case "Elevator Positive":
-				m_climber.setElevatorPower(0.4);
-				m_climber.spinElevator();
+			case "ElevatorPositive":
+				mClimber.setElevatorPower(0.4);
+				mClimber.spinElevator();
 				break;
-			case "Elevator Negative":
-				m_climber.setElevatorPower(-0.4);
-				m_climber.spinElevator();
+			case "ElevatorNegative":
+				mClimber.setElevatorPower(-0.4);
+				mClimber.spinElevator();
 				break;
 			default:
-				m_climber.stopEverything();
+				mClimber.stopEverything();
 				break;
 		}
-	}
+	} 
 
 	@Override
 	//-> Kills elevator when this command is cancelled. 
 	public void end(boolean interrupted) {
-		m_climber.stopEverything();
+		mClimber.stopEverything();
 	}
 
 	@Override

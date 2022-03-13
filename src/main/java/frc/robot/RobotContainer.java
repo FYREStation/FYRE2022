@@ -49,47 +49,45 @@ public class RobotContainer {
   	private final JoystickButton J12 = new JoystickButton(manipulatorControl, 12);
 
 	//-> Series of defined subsystems. 
-	private final Vision m_vision = new Vision();
-	private final Shooter m_shooter = new Shooter();
-	private final Climber m_climber = new Climber();
-	private final Intake m_intake = new Intake();
-	//private final Intake m_intake_spin = new Intake();
-
-	private static DriveTrain m_drivetrain = new DriveTrain();
-	// private final Intake m_intake = new Intake();
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	// private final Vision mVision = new Vision();
+	private final Shooter mShooter = new Shooter();
+	private final Climber mClimber = new Climber();
+	private final Intake mIntake = new Intake();
+	private static DriveTrain mDriveTrain = new DriveTrain();
+	SendableChooser<Command> mChooser = new SendableChooser<>();
 
 	//-> Chosen autonomous command, passed to getAutonomousCommand(). 
-	private final Autonomous m_autoCommand = new Autonomous(m_drivetrain);
+	private final Autonomous mAutoCommand = new Autonomous(mDriveTrain);
 
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {
-		m_drivetrain.setDefaultCommand(new Driving(m_drivetrain));
+		mDriveTrain.setDefaultCommand(new Driving(mDriveTrain));
 		// m_intake_spin.setDefaultCommand(new ThrottleAdjust());
     	configureButtonBindings();
 	}
 
 	//-> Method container for mapping button inputs to commands. 
 	private void configureButtonBindings() {
-    	J12.whileHeld(new ElevatorPower(m_climber, "Elevator Positive"));
-		J11.whileHeld(new ElevatorPower(m_climber, "Elevator Negative"));
+    	J12.whileHeld(new ElevatorPower(mClimber, "ElevatorPositive"));
+		J11.whileHeld(new ElevatorPower(mClimber, "ElevatorNegative"));
 		
-    	J10.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
-		J9.whileHeld(new ElevatorPower(m_climber, "Articulate Positive"));
+    	J10.whileHeld(new ElevatorPower(mClimber, "ArticulateNegative"));
+		J9.whileHeld(new ElevatorPower(mClimber, "ArticulatePositive"));
 		
-    	J8.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
-		J7.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
+    	J8.whileHeld(new ElevatorPower(mClimber, "HookPositive"));
+		J7.whileHeld(new ElevatorPower(mClimber, "HookNegative"));
 		
-		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
-		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
+		J5.whileHeld(new IntoIntake(mIntake, "IntakeForward"));
+		J3.whileHeld(new IntoIntake(mIntake, "IntakeBackward"));
 
-		//J2.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
-		J1.whileHeld(new OneShot(m_shooter, m_intake));
+		J2.whileHeld(new OneShot(mShooter, mIntake));
+		J1.whileHeld(new ControlShot(mShooter, "ShooterBackward")); 
+		// J1.whileHeld(new OneShot(mShooter, mIntake));
 	}
 
 	//-> Passes autonomous command to Robot class. 
 	public Command getAutonomousCommand() {
-		return m_autoCommand;
+		return mAutoCommand;
 	}
 }
 

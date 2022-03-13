@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
 public class ControlShot extends CommandBase {
-    private final Shooter m_shot;
-    String going_direction;
+    private final Shooter mShooter;
+    String goingDirection;
   
     public ControlShot(Shooter subsystem, String direction) {
-    	m_shot = subsystem;
-        going_direction = direction;
+    	mShooter = subsystem;
+        goingDirection = direction;
     	addRequirements(subsystem);
     }
 
@@ -31,15 +31,15 @@ public class ControlShot extends CommandBase {
     //-> Switch statement to decide the direction of the motor.
     @Override
     public void execute() {
-        switch(going_direction) {
-            case "Shooter_Forward":
-                m_shot.spinForward();
+        switch(goingDirection) {
+            case "ShooterForward":
+                mShooter.spinForward();
                 break;
-            case "Shooter_Backward":
-                m_shot.spinBackward();
+            case "ShooterBackward":
+                mShooter.spinBackward();
                 break;
             default:
-                m_shot.stopSpin();
+                mShooter.stopSpin();
                 break;
         }
 
@@ -48,7 +48,7 @@ public class ControlShot extends CommandBase {
   	@Override
     //-> Kills spin function.
   	public void end(boolean interrupted) {
-    	m_shot.stopSpin();
+    	mShooter.stopSpin();
   	}
 
   	@Override

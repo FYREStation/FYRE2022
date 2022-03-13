@@ -1,35 +1,37 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/*
+    [ commands / VisionProcessing.java ]
+    Established camera framework for detecting
+    balls and discerning their colors. 
+
+*/ 
+
+// [ Package ]
 package frc.robot.commands;
 
-//Import all of the packages to assist with vision processing
-import edu.wpi.first.wpilibj2.command.CommandBase;
+// [ Imports ] 
+// // [ Files ] 
 import frc.robot.subsystems.Vision;
-
-
-
+// // [ Classes ] 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 //Class to handle all of the calculations
 public class VisionProcessing extends CommandBase {
-    private final Vision m_vision;
-    //Defining all of the vectors that are going to be used
+    private final Vision Vision;
 
-    //Camera width and height
+    /*-> Defining all of the vectors that are going to be used
+      -> Camera width and height */
 
     public VisionProcessing(Vision subsystem) {
-        m_vision = subsystem;
+        Vision = subsystem;
         addRequirements(subsystem);
     }
 
     @Override
-    public void initialize() {}
-
-    @Override
+    //-> Passes vision vectors through every scheduler run. 
     public void execute() {
-        m_vision.get_vision_vectors();
+        Vision.getVisionVectors();
     }
-    // Returns true when the command should end.
+
     @Override
     public boolean isFinished() {
         return false;

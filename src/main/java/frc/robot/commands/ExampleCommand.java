@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 // [ Functions ]
 public class ExampleCommand extends CommandBase {
 	@SuppressWarnings("unused") //-> Used to quell possible "unused variable" warnings. 
-	private final ExampleSubsystem m_subsystem;
+	private final ExampleSubsystem mExampleSubsystem;
 
 	//-> Creates new ExampleCommand, passing @param subsystem to use whichever subsystem is specified. 
 	public ExampleCommand(ExampleSubsystem subsystem) { 
-		m_subsystem = subsystem;
+		mExampleSubsystem = subsystem;
 		//-> Use addRequirements() to specify subsystem dependencies for a command. 
 		// addRequirements(subsystem); //-> Throwing error. 
 	}
