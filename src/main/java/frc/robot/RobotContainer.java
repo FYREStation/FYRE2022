@@ -81,7 +81,9 @@ public class RobotContainer {
 		J3.whileHeld(new IntoIntake(mIntake, "IntakeBackward"));
 
 		J2.whileHeld(new OneShot(mShooter, mIntake));
-		J1.whileHeld(new ControlShot(mShooter, "ShooterBackward")); 
+		
+		J1.whileHeld(new ControlShot(mShooter, "shooter_manual_throttle")); 
+
 		// J1.whileHeld(new OneShot(mShooter, mIntake));
 	}
 
