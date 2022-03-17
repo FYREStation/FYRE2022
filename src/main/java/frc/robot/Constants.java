@@ -25,8 +25,8 @@ public final class Constants {
 
     // [ Shooter Ports ] 
     public static int shooterMotor = 5; 
-    public static int shooterEncoderA = 0;
-    public static int shooterEncoderB = 1;
+    public static int shooterEncoderA = 4;
+    public static int shooterEncoderB = 5;
 
     // [ Climber Ports ] 
     public static int motorOneArticulate = 1;
@@ -41,10 +41,10 @@ public final class Constants {
     public static boolean isTank = true;
 
     // Placeholder ports for drivetrain encoders. 
-    public static int driveRightEncoderA = 2;
-    public static int driveRightEncoderB = 3;
-    public static int driveLeftEncoderA = 4;
-    public static int driveLeftEncoderB = 5; 
+    public static int driveRightEncoderA = 1;
+    public static int driveRightEncoderB = 0;
+    public static int driveLeftEncoderA = 3;
+    public static int driveLeftEncoderB = 2; 
 
     // TODO: Add sensors (gyro, encoder, and cameras for example)
 

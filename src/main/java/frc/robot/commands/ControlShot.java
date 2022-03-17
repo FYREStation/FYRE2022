@@ -11,7 +11,9 @@ package frc.robot.commands;
 // [ Imports ] 
 // // [ Files ] 
 import frc.robot.subsystems.Shooter;
+import frc.robot.Robot;
 // // [ Classes ]
+import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
@@ -35,11 +37,16 @@ public class ControlShot extends CommandBase {
             case "Shooter_Forward":
                 m_shot.spinForward();
                 break;
+            case "Shooter_Backward":
+                m_shot.spinBackward();
+                break;
+            case "Shooter_Throttle":
+                m_shot.spinThrottle();
+                break;
             default:
                 m_shot.stopSpin();
                 break;
         }
-
     }
 
   	@Override

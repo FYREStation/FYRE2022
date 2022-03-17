@@ -16,12 +16,16 @@ package frc.robot;
 // [ Imports ] 
 // // [ Files ] 
 import frc.robot.commands.*;
+import frc.robot.commands.AutoSequence.BootUpShot;
+import frc.robot.commands.AutoSequence.SpitOut;
+import frc.robot.commands.AutoSequence.StraightAuto;
 import frc.robot.subsystems.*;
 // // [ Classes ] 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 /* import edu.wpi.first.wpilibj.GenericHID;
    import com.fasterxml.jackson.databind.util.ArrayIterator;
@@ -31,8 +35,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 // [ Functions ] 
 public class RobotContainer {
-	private final Joystick manipulatorControl = new Joystick(0);
-	public static XboxController driverControl = new XboxController(1);
+	public final static Joystick manipulatorControl = new Joystick(0);
+	public final static XboxController driverControl = new XboxController(1);
 
 	//-> Series of declared Joystick buttons for controlling purposes. 
 	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
@@ -58,7 +62,14 @@ public class RobotContainer {
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	//-> Chosen autonomous command, passed to getAutonomousCommand(). 
-	private final Autonomous m_autoCommand = new Autonomous(m_drivetrain);
+	//private final Autonomous m_autoCommand = new Autonomous(m_drivetrain);
+	//private final StraightAuto m_autoCommand = new StraightAuto(m_drivetrain);
+	//private final PathWeaverTest1 m_autoCommand = new PathWeaverTest1(m_drivetrain);
+	
+	private final StraightAuto stepOne = new StraightAuto(m_drivetrain);
+	private final SpitOut stepTwo = new SpitOut(m_shooter);
+	private final BootUpShot stepThree = new BootUpShot(m_shooter, m_intake);
+	private final SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(stepOne, stepTwo, stepThree);
 
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {
@@ -77,12 +88,12 @@ public class RobotContainer {
     	J8.whileHeld(new ElevatorPower(m_climber, "Hook Negative"));
 		J7.whileHeld(new ElevatorPower(m_climber, "Hook Positive"));
 		
-		J5.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
-		J3.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
+		J5.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
+		J3.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 
-		J2.whileHeld(new VisionProcessing(m_vision));
+		//J2.whileHeld(new VisionProcessing(m_vision));
 		
-		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Forward"));
+		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Throttle"));
 	}
 
 	//-> Passes autonomous command to Robot class. 
