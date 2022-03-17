@@ -34,9 +34,9 @@ public class Shooter extends SubsystemBase {
   	public void periodic() {
     	SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getDistance());
 		throttle_power =  RobotContainer.manipulatorControl.getRawAxis(3) * 2;
-		if (throttle_power <= 1) {
+		if (throttle_power >= 1) {
 			shooter_power = throttle_power - 1;
-		} else if (throttle_power > 1) {
+		} else if (throttle_power < 1) {
 			shooter_power = (throttle_power - 1) * -1;
 		}
   	}

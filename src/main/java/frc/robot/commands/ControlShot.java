@@ -38,9 +38,6 @@ public class ControlShot extends CommandBase {
             case "ShooterBackward":
                 mShooter.spinBackward();
                 break;
-            case "shooter_manual_throttle":
-                mShooter.spin_with_throttle();
-                break;
             default:
                 mShooter.stopSpin();
                 break;
