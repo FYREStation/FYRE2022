@@ -31,8 +31,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 // [ Functions ] 
 public class RobotContainer {
-	private final Joystick manipulatorControl = new Joystick(0);
-	public static XboxController driverControl = new XboxController(1);
+	public static final Joystick manipulatorControl = new Joystick(0);
+	public static final XboxController driverControl = new XboxController(1);
 
 	//-> Series of declared Joystick buttons for controlling purposes. 
 	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
