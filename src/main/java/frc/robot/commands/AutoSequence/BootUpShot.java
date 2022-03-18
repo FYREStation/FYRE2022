@@ -41,15 +41,12 @@ public class BootUpShot extends CommandBase {
     @Override   
     public void execute() { 
         if(System.currentTimeMillis() - startTime > 3000){
-            m_intake.run_intake_forward();
+            m_intake.run_intake_backward();
         }
     }
 
     @Override
     public boolean isFinished() { 
-        if(DriverStation.getMatchTime() <= 5){
-            return true;
-        }
         return false;
     }
 

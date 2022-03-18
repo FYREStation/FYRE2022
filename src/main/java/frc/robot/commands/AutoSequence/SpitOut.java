@@ -38,7 +38,7 @@ public class SpitOut extends CommandBase {
 
     @Override   
     public void execute() { 
-        m_shot.spinAmount(-0.20);
+        m_shot.spinAmount(-0.70);
     }
 
     @Override

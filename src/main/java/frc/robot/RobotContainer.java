@@ -70,7 +70,7 @@ public class RobotContainer {
 	private final SpitOut stepTwo = new SpitOut(m_shooter);
 	private final BootUpShot stepThree = new BootUpShot(m_shooter, m_intake);
 	private final SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(stepOne, stepTwo, stepThree);
-
+	
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {
 		m_drivetrain.setDefaultCommand(new Driving(m_drivetrain));
