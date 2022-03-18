@@ -38,8 +38,8 @@ public class DriveTrain extends SubsystemBase {
 	private static boolean safety_toggle = false; //-> Edit safety toggle. 
 
 	//-> Creates new encoder variables to be used in Autonomous. 
-	private final Encoder left_encoder = new Encoder(Constants.driveLeftEncoderA, Constants.driveLeftEncoderB, true, Encoder.EncodingType.k4X);
-	private final Encoder right_encoder = new Encoder(Constants.driveRightEncoderA, Constants.driveRightEncoderB, true, Encoder.EncodingType.k4X);
+	private final Encoder left_encoder = new Encoder(Constants.driveLeftEncoderA, Constants.driveLeftEncoderB, false, Encoder.EncodingType.k4X);
+	private final Encoder right_encoder = new Encoder(Constants.driveRightEncoderA, Constants.driveRightEncoderB, true, Encoder.EncodingType.k2X);
 
 	private final Gyro drive_gyro = new ADXRS450_Gyro(Port.kOnboardCS0);
 
@@ -52,6 +52,15 @@ public class DriveTrain extends SubsystemBase {
 		left_motorA.setSafetyEnabled(safety_toggle);
 		right_motorA.setSafetyEnabled(safety_toggle);
 		differential_drive.setSafetyEnabled(safety_toggle);
+
+		drive_gyro.reset();
+		drive_gyro.calibrate();
+
+		left_encoder.reset();
+		right_encoder.reset();
+
+		left_encoder.setDistancePerPulse(1.0/2048*6*Math.PI);
+		right_encoder.setDistancePerPulse(1.0/2048*6*Math.PI);
     }
 
 	//-> Two drive functions for arcade drive method and tank drive method. 
@@ -79,7 +88,7 @@ public class DriveTrain extends SubsystemBase {
 			return this.right_encoder.get(); 
 		}
 
-		return 0.0; 
+		return 999999.99; 
 	}
 
 	public void reset_encoder(String side) {
@@ -115,6 +124,10 @@ public class DriveTrain extends SubsystemBase {
 	public void periodic() {
 		SmartDashboard.putNumber("GYRO Angle Chart:", drive_gyro.getAngle());
 		SmartDashboard.putNumber("GYRO Reading:", drive_gyro.getAngle());
+		SmartDashboard.putNumber("Left Encoder Distance (revolutions)", get_encoder_distance("left"));
+		SmartDashboard.putNumber("Right Encoder Distance (revolutions)", get_encoder_distance("right"));
+		SmartDashboard.putNumber("Left Encoder Pulses", left_encoder.get());
+		SmartDashboard.putNumber("Right Encoder Pulses", right_encoder.get());
 	}
 
 	@Override

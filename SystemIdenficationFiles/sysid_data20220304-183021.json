@@ -1,0 +1,6 @@
+{
+  "sysid": true,
+  "test": "Drivetrain",
+  "units": "Feet",
+  "unitsPerRotation": 1.57079632
+}

@@ -1,5 +1,29 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Shooter Percentage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="104" y="442"/>
+	</widget>
+	<widget field="Shooter Throttle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="104" y="402"/>
+		<property name="Maximum" value="1.0"/>
+		<property name="Minimum" value="-1.0"/>
+	</widget>
+	<widget field="Right Encoder Pulses" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="744" y="441"/>
+	</widget>
+	<widget field="Left Encoder Pulses" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="533" y="440"/>
+	</widget>
+	<widget field="Right Encoder Distance (revolutions)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="728" y="473"/>
+		<height>25</height>
+	</widget>
+	<widget field="GYRO Angle Chart:" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="732" y="399"/>
+	</widget>
+	<widget field="Left Encoder Distance (revolutions)" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="468" y="470"/>
+	</widget>
 	<widget field="GYRO Angle:" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="554" y="408"/>
 	</widget>
@@ -33,5 +57,63 @@
 	</widget>
 </dashboard>
 <live-window>
+	<widget field="Intake" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="110"/>
+	</widget>
+	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="88"/>
+	</widget>
+	<widget field="Vision" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="66"/>
+	</widget>
+	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="44"/>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Encoder[1]" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="6" y="15"/>
+			<height>92</height>
+			<width>295</width>
+		</widget>
+		<widget field="ADXRS450_Gyro[0]" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="107"/>
+			<height>150</height>
+			<width>295</width>
+		</widget>
+		<widget field="Spark[2]" type="Motor Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="257"/>
+			<height>45</height>
+			<width>295</width>
+		</widget>
+		<widget field="Encoder[0]" type="Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="6" y="302"/>
+			<height>92</height>
+			<width>295</width>
+		</widget>
+		<widget field="PIDController[1]" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
+			<location x="6" y="394"/>
+			<height>149</height>
+			<width>295</width>
+		</widget>
+		<widget field="PIDController[2]" type="PIDController" class="edu.wpi.first.smartdashboard.gui.elements.PIDEditor">
+			<location x="6" y="543"/>
+			<height>149</height>
+			<width>295</width>
+		</widget>
+		<widget field="Encoder[2]" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="6" y="692"/>
+			<height>92</height>
+			<width>295</width>
+		</widget>
+		<location x="0" y="22"/>
+		<width>307</width>
+		<height>790</height>
+	</widget>
+	<widget field="Climber" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="0"/>
+	</widget>
 </live-window>
+	<hidden field="Millis"/>
+	<hidden field="Shooter Power"/>
+	<hidden field="Shooter Throttl"/>
 </xml>

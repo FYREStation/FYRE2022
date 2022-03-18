@@ -48,17 +48,18 @@ public class Autonomous extends CommandBase {
 
     @Override
     public boolean isFinished() { 
+        /*
         if(PIDAutoController.atSetpoint()){
             System.out.println("REACHED SETPOINT!!!");
             return true;   
         }
         return false;
+        */
+        return false;
     }
 
     @Override
     public void end(boolean interrupted) {}
-
-
 
     // Short movement command. Not fully functional. 
     public void auto_distance(double distance, boolean forward) { 
