@@ -36,7 +36,7 @@ public class Driving extends CommandBase {
 	public void execute() {
 		//-> Grabs orientation of XboxController joysticks. 
 	 	y_left = -RobotContainer.driverControl.getLeftY();
-		x_right = RobotContainer.driverControl.getRightX();
+		x_right = RobotContainer.driverControl.getRightX() * 0.8;
 
 		/* x_left = RobotContainer.driverControl.getLeftX();
 		   y_right = RobotContainer.driverControl.getRightY(); */ //-> Possible axes for edited controller settings. 
