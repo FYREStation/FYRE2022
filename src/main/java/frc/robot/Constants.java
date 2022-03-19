@@ -18,7 +18,7 @@ import edu.wpi.first.cscore.UsbCamera;
 // [ Functions ] 
 public final class Constants {
 	// [ Variables ] 
-    public static double throttle = 0.6;
+    public static double throttle = 1.0;
 
     // [ Intake Ports ] 
     public static int intakeMotor = 2;
