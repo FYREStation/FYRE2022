@@ -13,9 +13,12 @@ package frc.robot.subsystems;
 import frc.robot.Constants;
 // // [ Classes ] 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.hal.DigitalGlitchFilterJNI;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 /* import com.fasterxml.jackson.annotation.JsonCreator.Mode;
@@ -29,6 +32,7 @@ public class Climber extends SubsystemBase {
 	TalonSRX elevatorMotor = new TalonSRX(Constants.motorElevator);
 	CANSparkMax articulateMotorOne = new CANSparkMax(Constants.motorOneArticulate, MotorType.kBrushed);
 	CANSparkMax articulateMotorTwo = new CANSparkMax(Constants.motorTwoArticulate, MotorType.kBrushed);
+	DigitalInput elevatorLimitSwitch = new DigitalInput(Constants.climberLimit);
 
 	//-> Power variables. 
 	double hookPower, articulatePower, elevatorPower = 0;
@@ -64,6 +68,10 @@ public class Climber extends SubsystemBase {
 	public void spinArticulate (){
 		articulateMotorOne.set(articulatePower);
 		articulateMotorTwo.set(articulatePower);
+	}
+
+	public boolean getElevatorLimit(){
+		return elevatorLimitSwitch.get();
 	}
 
 	public void spinHook(){

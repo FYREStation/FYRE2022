@@ -25,7 +25,7 @@ public final class Constants {
 
     // [ Shooter Ports ] 
     public static int shooterMotor = 5; 
-    public static int shooterEncoderA = 4;
+    public static int shooterEncoderA = 6;
     public static int shooterEncoderB = 5;
 
     // [ Climber Ports ] 
@@ -33,6 +33,7 @@ public final class Constants {
     public static int motorTwoArticulate = 2;
     public static int chainMotor = 3;
     public static int motorElevator = 4;
+    public static int climberLimit = 4;
 
     // [ DriveTrain Ports ]
     public static int leftDriveMotorA = 0; 
