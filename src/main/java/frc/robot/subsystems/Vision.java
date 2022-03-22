@@ -12,7 +12,6 @@ import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.first.cscore.UsbCamera;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.BlueGripPipeline;
 import frc.robot.Constants;
@@ -34,15 +33,18 @@ public class Vision extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public Vision() {
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT); 
+    visionThread.start();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Center X", centerX);
-    SmartDashboard.putNumber("Center Y", centerY);
-    SmartDashboard.putNumber("Diameter", diameter);
-    SmartDashboard.putString("Testing", "Periodic");
+    synchronized(imgLock) {
+      SmartDashboard.putNumber("Center X", centerX);
+      SmartDashboard.putNumber("Center Y", centerY);
+      SmartDashboard.putNumber("Diameter", diameter);
+      SmartDashboard.putString("Testing", "Periodic");
+    }
   }
 
   @Override
@@ -55,30 +57,25 @@ public class Vision extends SubsystemBase {
   public void get_vision_vectors() {
     //Getting the input from the camera
     //Deciding what aliance we are on and calculating the vectors
-      SmartDashboard.putString("Alliance", "Red");
-      visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
-        if (!pipeline.filterContoursOutput().isEmpty()) {
-          try {
-            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-            synchronized(imgLock){
-              diameter = r.width;
-              centerX = r.x + (r.width / 2);
-              centerY = r.y + (r.height / 2);
-              SmartDashboard.putNumber("Center X", centerX);
-              SmartDashboard.putNumber("Center Y", centerY);
-              SmartDashboard.putNumber("Diameter", diameter);
-              SmartDashboard.putString("Testing", "Periodic");
-              System.out.println(centerX);
-              Thread.sleep(100);
-            }
-          } 
-          catch (Exception e) {
-            System.out.println("Vision Detection did not run! F**K!!!");
-          } 
-        }
-      });
-      visionThread.start();
-    }
+    SmartDashboard.putString("Alliance", "Red");
+    visionThread = new VisionThread(camera, new RedGripPipeline(), pipeline -> {
+      if (!pipeline.filterContoursOutput().isEmpty()) {
+        try {
+          pipeline.process(null);
+          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+          synchronized(imgLock){
+            diameter = r.width;
+            centerX = r.x + (r.width / 2);
+            centerY = r.y + (r.height / 2);
+            Thread.sleep(100);
+          }
+        } 
+        catch (Exception e) {
+          System.out.println("Vision Detection did not run! F**K!!!");
+        } 
+      }
+    });
+  }
 
   
   public static double get_radius() {
