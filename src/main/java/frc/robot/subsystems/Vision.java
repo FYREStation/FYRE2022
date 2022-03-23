@@ -44,6 +44,7 @@ public class Vision extends SubsystemBase {
       SmartDashboard.putNumber("Center Y", centerY);
       SmartDashboard.putNumber("Diameter", diameter);
       SmartDashboard.putString("Testing", "Periodic");
+      System.out.println("Periotic is running");
     }
   }
 
