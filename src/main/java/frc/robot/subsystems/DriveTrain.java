@@ -126,8 +126,7 @@ public class DriveTrain extends SubsystemBase {
 		SmartDashboard.putNumber("GYRO Reading:", drive_gyro.getAngle());
 		SmartDashboard.putNumber("Left Encoder Distance (revolutions)", get_encoder_distance("left"));
 		SmartDashboard.putNumber("Right Encoder Distance (revolutions)", get_encoder_distance("right"));
-		SmartDashboard.putNumber("Left Encoder Pulses", left_encoder.get());
-		SmartDashboard.putNumber("Right Encoder Pulses", right_encoder.get());
+
 	}
 
 	@Override

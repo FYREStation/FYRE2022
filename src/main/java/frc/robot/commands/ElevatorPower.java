@@ -50,12 +50,12 @@ public class ElevatorPower extends CommandBase {
 				break;
 			case "Elevator Positive":
 				if(!m_climber.getElevatorLimit()){
-					m_climber.setElevatorPower(0.4);
+					m_climber.setElevatorPower(-0.4);
 					m_climber.spinElevator();
 				}
 				break;
 			case "Elevator Negative":
-				m_climber.setElevatorPower(-0.4);
+				m_climber.setElevatorPower(0.4);
 				m_climber.spinElevator();
 				break;
 			default:

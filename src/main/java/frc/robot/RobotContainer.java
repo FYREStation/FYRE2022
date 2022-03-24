@@ -79,8 +79,8 @@ public class RobotContainer {
 
 	//-> Method container for mapping button inputs to commands. 
 	private void configureButtonBindings() {
-    	J12.whileHeld(new ElevatorPower(m_climber, "Elevator Positive"));
-		J11.whileHeld(new ElevatorPower(m_climber, "Elevator Negative"));
+    	J12.whileHeld(new ElevatorPower(m_climber, "Elevator Negative"));
+		J11.whileHeld(new ElevatorPower(m_climber, "Elevator Positive"));
 		
     	J10.whileHeld(new ElevatorPower(m_climber, "Articulate Negative"));
 		J9.whileHeld(new ElevatorPower(m_climber, "Articulate Positive"));
