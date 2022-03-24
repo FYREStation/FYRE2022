@@ -20,32 +20,38 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DriverStation;
 
 // [ Functions ]
-public class BootUpShot extends CommandBase {
+public class RotateBit extends CommandBase {
     @SuppressWarnings("unused")
-    private final Shooter m_shot;
-    private final Intake m_intake;
+    private final DriveTrain m_driveTrain; 
     private double startTime;
+    private PIDController rotatePID;
+    private double startAngle;
 
-    public BootUpShot(Shooter shooter, Intake intake) { 
-        m_shot = shooter;
-        m_intake = intake; 
-        addRequirements(shooter, intake);
+    public RotateBit(DriveTrain drive) { 
+        m_driveTrain = drive; 
+        addRequirements(drive);
     }
 
     @Override
     public void initialize() {
         startTime = System.currentTimeMillis();
-        m_shot.spinAmount(0.8);
+        rotatePID = new PIDController(0.05,0,0);
+        rotatePID.setTolerance(3);
+        startAngle = m_driveTrain.getGyro();
+        rotatePID.setSetpoint(startAngle + 20);
     }
 
-    @Override 
+    @Override   
     public void execute() { 
-        m_intake.run_intake_backward();
+        m_driveTrain.tankDrive(
+            MathUtil.clamp(rotatePID.calculate(m_driveTrain.getGyro() - startAngle), -0.75, 0.75),
+            MathUtil.clamp(rotatePID.calculate(m_driveTrain.getGyro() - startAngle), -0.75, 0.75)
+        );
     }
 
     @Override
     public boolean isFinished() { 
-        if(System.currentTimeMillis() - startTime > 3000){
+        if(rotatePID.atSetpoint()){
             return true;
         }
         return false;
@@ -53,8 +59,7 @@ public class BootUpShot extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        m_shot.spinAmount(0.0);
-        m_intake.stopIntake();
+        m_driveTrain.tankDrive(0,0);
     }
 
 }
