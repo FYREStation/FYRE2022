@@ -52,6 +52,9 @@ public class RobotContainer {
 	private final JoystickButton J11 = new JoystickButton(manipulatorControl, 11);
   	private final JoystickButton J12 = new JoystickButton(manipulatorControl, 12);
 
+	private final JoystickButton X5 = new JoystickButton(driverControl, 5);
+	private final JoystickButton X6 = new JoystickButton(driverControl, 6);
+
 	//-> Series of defined subsystems. 
 	private final Vision m_vision = new Vision();
 	private final Shooter m_shooter = new Shooter();
@@ -94,6 +97,10 @@ public class RobotContainer {
 		//J2.whileHeld(new VisionProcessing(m_vision));
 		
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Throttle"));
+
+		X5.whenPressed(new DrivingPower("Negative"));
+		X6.whenPressed(new DrivingPower("Positive"));
+		
 	}
 
 	//-> Passes autonomous command to Robot class. 
