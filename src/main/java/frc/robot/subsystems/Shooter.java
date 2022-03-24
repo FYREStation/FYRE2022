@@ -20,6 +20,7 @@ public class Shooter extends SubsystemBase {
   private TalonSRX motorShoot = new TalonSRX(Constants.shooterMotor);
   private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
   private double throttle = 0.0;
+  private boolean upToSpeed = false;
 
   public Shooter() {
 
@@ -34,8 +35,70 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getDistance());
+    SmartDashboard.putNumber("Shooter Speed", shooterEncoder.getRate());
     SmartDashboard.putNumber("Shooter Throttle", RobotContainer.manipulatorControl.getRawAxis(3) * -1);
     SmartDashboard.putNumber("Shooter Percentage", RobotContainer.manipulatorControl.getRawAxis(3) * -1);
+
+    switch((int)(throttle*100)){
+      case 60:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 65:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      
+      case 70:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 75:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 80:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 85:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 90:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 95:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+      case 100:
+        if(shooterEncoder.getRate() > 9){
+          upToSpeed = true;
+        }else{
+          upToSpeed = false;
+        }
+
+        
+    }
+    SmartDashboard.putBoolean("Ready to Shoot", upToSpeed);
   }
 
   @Override
@@ -57,10 +120,17 @@ public class Shooter extends SubsystemBase {
   }
 
   public void spinThrottle(){
-    throttle = RobotContainer.manipulatorControl.getRawAxis(3) * -1;
+    //throttle = RobotContainer.manipulatorControl.getRawAxis(3) * -1;
     motorShoot.set(ControlMode.PercentOutput, throttle);
   }
 
+  public void setThrottle(double newThrottle){
+    if(newThrottle >= 0.0 && newThrottle <=1.0)
+      throttle = newThrottle;
+  }
+public double getThrottle(){
+  return throttle;
+}
   public void spinAmount(double power){
     throttle = power;
     motorShoot.set(ControlMode.PercentOutput, power);
