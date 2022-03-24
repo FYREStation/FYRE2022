@@ -36,64 +36,51 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getDistance());
     SmartDashboard.putNumber("Shooter Speed", shooterEncoder.getRate());
-    SmartDashboard.putNumber("Shooter Throttle", RobotContainer.manipulatorControl.getRawAxis(3) * -1);
-    SmartDashboard.putNumber("Shooter Percentage", RobotContainer.manipulatorControl.getRawAxis(3) * -1);
+    SmartDashboard.putNumber("Shooter Throttle", throttle);
+    SmartDashboard.putNumber("Shooter Percentage", throttle);
 
-    switch((int)(throttle*100)){
+    System.out.println("casting to:" + (int)(throttle*100));
+    upToSpeed=false;
+
+    switch(fixerTo5(throttle)){
       case 60:
-        if(shooterEncoder.getRate() > 9){
+        System.out.println("were actually getting to the case???");
+        if(shooterEncoder.getRate() > 78){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
+
       case 65:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 88){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       
       case 70:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 97){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       case 75:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 106){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       case 80:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 120){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       case 85:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 122){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       case 90:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 129){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       case 95:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 137){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
       case 100:
-        if(shooterEncoder.getRate() > 9){
+        if(shooterEncoder.getRate() > 145){
           upToSpeed = true;
-        }else{
-          upToSpeed = false;
         }
 
         
@@ -125,8 +112,9 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setThrottle(double newThrottle){
-    if(newThrottle >= 0.0 && newThrottle <=1.0)
+    if(newThrottle >= 0.0 && newThrottle <=1.05){
       throttle = newThrottle;
+    }
   }
 public double getThrottle(){
   return throttle;
@@ -139,4 +127,15 @@ public double getThrottle(){
   public double getDistance(){
     return shooterEncoder.getDistance();
   }
+
+
+public int fixerTo5(double number){
+  double fixed = number * 100;
+  if((int)fixed % 5 ==0){
+    return (int)fixed;
+  }
+  else{
+    return (int)(fixed+1);
+  }
+}
 }

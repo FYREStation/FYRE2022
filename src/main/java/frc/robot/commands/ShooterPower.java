@@ -27,11 +27,7 @@ public class ShooterPower extends CommandBase {
 	}
 
 	@Override
-	public void initialize() {}
-
-	//-> Switch statement for selecting power and functions for Climber command. 
-	@Override
-	public void execute() {
+	public void initialize() {
 		switch (sectionPower) {
 			case "Shooter Increment":
 				m_shooter.setThrottle(m_shooter.getThrottle()+0.05);
@@ -44,6 +40,12 @@ public class ShooterPower extends CommandBase {
 		}
 	}
 
+	//-> Switch statement for selecting power and functions for Climber command. 
+	@Override
+	public void execute() {
+		
+	}
+
 	@Override
 	//-> Kills elevator when this command is cancelled. 
 	public void end(boolean interrupted) {
@@ -51,6 +53,6 @@ public class ShooterPower extends CommandBase {
 
 	@Override
 	public boolean isFinished() {
-		return false;
+		return true;
 	}
 }

@@ -42,9 +42,9 @@ public class RobotContainer {
 	private final JoystickButton J1 = new JoystickButton(manipulatorControl, 1);
 	private final JoystickButton J2 = new JoystickButton(manipulatorControl, 2); 
 	private final JoystickButton J3 = new JoystickButton(manipulatorControl, 3);  
-	//private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
+	private final JoystickButton J4 = new JoystickButton(manipulatorControl, 4);  
 	private final JoystickButton J5 = new JoystickButton(manipulatorControl, 5);
-	//private final JoystickButton J6 = new JoystickButton(manipulatorControl, 6);
+	private final JoystickButton J6 = new JoystickButton(manipulatorControl, 6);
 	private final JoystickButton J7 = new JoystickButton(manipulatorControl, 7);
 	private final JoystickButton J8 = new JoystickButton(manipulatorControl, 8);
 	private final JoystickButton J9 = new JoystickButton(manipulatorControl, 9);
@@ -95,6 +95,9 @@ public class RobotContainer {
 		J3.whileHeld(new IntoIntake(m_intake, "Intake_Forward"));
 
 		//J2.whileHeld(new VisionProcessing(m_vision));
+		J6.whenPressed(new ShooterPower(m_shooter, "Shooter Increment"));
+
+		J4.whenPressed(new ShooterPower(m_shooter, "Shooter Decrement"));
 		
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Throttle"));
 
