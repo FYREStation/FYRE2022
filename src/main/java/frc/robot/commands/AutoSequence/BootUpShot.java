@@ -35,10 +35,10 @@ public class BootUpShot extends CommandBase {
     @Override
     public void initialize() {
         startTime = System.currentTimeMillis();
-        m_shot.spinAmount(0.7);
+        m_shot.spinAmount(0.8);
     }
 
-    @Override   
+    @Override 
     public void execute() { 
         if(System.currentTimeMillis() - startTime > 3000){
             m_intake.run_intake_backward();
