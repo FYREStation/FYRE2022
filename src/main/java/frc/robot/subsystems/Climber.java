@@ -19,6 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.hal.DigitalGlitchFilterJNI;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 /* import com.fasterxml.jackson.annotation.JsonCreator.Mode;
@@ -42,7 +43,9 @@ public class Climber extends SubsystemBase {
 	}
 
 	@Override
-	public void periodic() {}
+	public void periodic() {
+		SmartDashboard.putBoolean("Limit Switch Status", getElevatorLimit());
+	}
 
 	@Override
 	public void simulationPeriodic() {}
