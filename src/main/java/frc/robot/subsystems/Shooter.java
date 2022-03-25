@@ -63,7 +63,7 @@ public class Shooter extends SubsystemBase {
           upToSpeed = true;
         }
       case 80:
-        if(shooterEncoder.getRate() > 118){
+        if(shooterEncoder.getRate() > 120){
           upToSpeed = true;
         }
       case 85:

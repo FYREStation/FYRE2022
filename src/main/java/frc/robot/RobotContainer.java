@@ -17,7 +17,6 @@ package frc.robot;
 // // [ Files ] 
 import frc.robot.commands.*;
 import frc.robot.commands.AutoSequence.BootUpShot;
-import frc.robot.commands.AutoSequence.RotateBit;
 import frc.robot.commands.AutoSequence.SpitOut;
 import frc.robot.commands.AutoSequence.StraightAuto;
 import frc.robot.subsystems.*;
@@ -73,8 +72,7 @@ public class RobotContainer {
 	private final StraightAuto stepOne = new StraightAuto(m_drivetrain);
 	private final SpitOut stepTwo = new SpitOut(m_shooter);
 	private final BootUpShot stepThree = new BootUpShot(m_shooter, m_intake);
-	private final RotateBit stepFour = new RotateBit(m_drivetrain);
-	private final SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(stepOne, stepTwo, stepThree, stepFour);
+	private final SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(stepOne, stepTwo, stepThree);
 	
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {

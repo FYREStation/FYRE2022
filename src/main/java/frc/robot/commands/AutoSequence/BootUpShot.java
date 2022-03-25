@@ -40,14 +40,13 @@ public class BootUpShot extends CommandBase {
 
     @Override 
     public void execute() { 
-        m_intake.run_intake_backward();
+        if(System.currentTimeMillis() - startTime > 3000){
+            m_intake.run_intake_backward();
+        }
     }
 
     @Override
     public boolean isFinished() { 
-        if(System.currentTimeMillis() - startTime > 3000){
-            return true;
-        }
         return false;
     }
 
