@@ -38,11 +38,11 @@ public class StraightAuto extends CommandBase {
 
         PIDLeftController = new PIDController(0.055,0.001,0.0);
         PIDLeftController.setSetpoint(-72);
-        PIDLeftController.setTolerance(1);
+        PIDLeftController.setTolerance(4);
 
         PIDRightController = new PIDController(0.055,0.001,0.0);
         PIDRightController.setSetpoint(-72);
-        PIDRightController.setTolerance(1);
+        PIDRightController.setTolerance(4);
     }
 
     @Override   

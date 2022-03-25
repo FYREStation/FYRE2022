@@ -19,7 +19,7 @@ public class Shooter extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   private TalonSRX motorShoot = new TalonSRX(Constants.shooterMotor);
   private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
-  private double throttle = 0.0;
+  private double throttle = 0.8;
   private boolean upToSpeed = false;
 
   public Shooter() {
@@ -63,7 +63,7 @@ public class Shooter extends SubsystemBase {
           upToSpeed = true;
         }
       case 80:
-        if(shooterEncoder.getRate() > 120){
+        if(shooterEncoder.getRate() > 118){
           upToSpeed = true;
         }
       case 85:

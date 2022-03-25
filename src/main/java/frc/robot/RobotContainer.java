@@ -22,6 +22,9 @@ import frc.robot.commands.AutoSequence.StraightAuto;
 import frc.robot.subsystems.*;
 // // [ Classes ] 
 import edu.wpi.first.wpilibj.XboxController;
+
+import javax.sound.sampled.Control;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -100,6 +103,7 @@ public class RobotContainer {
 		J4.whenPressed(new ShooterPower(m_shooter, "Shooter Decrement"));
 		
 		J1.whileHeld(new ControlShot(m_shooter, "Shooter_Throttle"));
+		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
 
 		X5.whenPressed(new DrivingPower("Negative"));
 		X6.whenPressed(new DrivingPower("Positive"));

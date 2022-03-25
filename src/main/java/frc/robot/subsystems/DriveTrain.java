@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI.Port;
 
@@ -127,7 +128,7 @@ public class DriveTrain extends SubsystemBase {
 		SmartDashboard.putNumber("Left Encoder Distance (revolutions)", get_encoder_distance("left"));
 		SmartDashboard.putNumber("Right Encoder Distance (revolutions)", get_encoder_distance("right"));
 		SmartDashboard.putNumber("Driving Throttle", Constants.throttle);
-
+		SmartDashboard.putNumber("Time Total:", DriverStation.getMatchTime());
 	}
 
 	@Override
