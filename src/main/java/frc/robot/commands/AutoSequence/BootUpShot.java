@@ -35,7 +35,7 @@ public class BootUpShot extends CommandBase {
     @Override
     public void initialize() {
         startTime = System.currentTimeMillis();
-        m_shot.spinAmount(0.8);
+        m_shot.spinAmount(0.75);
     }
 
     @Override 
@@ -47,12 +47,15 @@ public class BootUpShot extends CommandBase {
 
     @Override
     public boolean isFinished() { 
+        if(System.currentTimeMillis() - startTime > 4000){
+            return true;
+        }
         return false;
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_shot.spinAmount(0.0);
+        m_shot.stopSpin();
         m_intake.stopIntake();
     }
 

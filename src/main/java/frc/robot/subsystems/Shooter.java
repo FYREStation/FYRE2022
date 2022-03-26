@@ -38,13 +38,10 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Shooter Speed", shooterEncoder.getRate());
     SmartDashboard.putNumber("Shooter Throttle", throttle);
     SmartDashboard.putNumber("Shooter Percentage", throttle);
-
-    System.out.println("casting to:" + (int)(throttle*100));
     upToSpeed=false;
 
     switch(fixerTo5(throttle)){
       case 60:
-        System.out.println("were actually getting to the case???");
         if(shooterEncoder.getRate() > 78){
           upToSpeed = true;
         }
@@ -112,7 +109,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setThrottle(double newThrottle){
-    if(newThrottle >= 0.0 && newThrottle <=1.05){
+    if(newThrottle >= -1.0 && newThrottle <=1.05){
       throttle = newThrottle;
     }
   }
@@ -120,7 +117,6 @@ public double getThrottle(){
   return throttle;
 }
   public void spinAmount(double power){
-    throttle = power;
     motorShoot.set(ControlMode.PercentOutput, power);
   }
 

@@ -12,6 +12,7 @@ package frc.robot.commands.AutoSequence;
 // // [ Files ]
 import frc.robot.subsystems.*;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // // [ Classes ]
 import edu.wpi.first.wpilibj2.command.CommandBase;
 // import frc.robot.Constants;
@@ -25,6 +26,8 @@ public class StraightAuto extends CommandBase {
     private final DriveTrain drive_train; 
     private PIDController PIDLeftController;
     private PIDController PIDRightController;
+    private double wait;
+    private double startTime;
 
     public StraightAuto(DriveTrain dt) { 
         drive_train = dt; 
@@ -43,15 +46,19 @@ public class StraightAuto extends CommandBase {
         PIDRightController = new PIDController(0.055,0.001,0.0);
         PIDRightController.setSetpoint(-72);
         PIDRightController.setTolerance(4);
+
+        wait = SmartDashboard.getNumber("Delay For Auto", 0);
+        startTime = System.currentTimeMillis();
     }
 
     @Override   
     public void execute() { 
-
-        drive_train.tankDrive(
+        if((System.currentTimeMillis() - startTime >= wait)){
+            drive_train.tankDrive(
             MathUtil.clamp(PIDLeftController.calculate(drive_train.get_encoder_distance("left")), -0.75, 0.75),
             -1 * MathUtil.clamp(PIDRightController.calculate(drive_train.get_encoder_distance("right")), -0.75, 0.75)
         );
+        }
     }
 
     @Override

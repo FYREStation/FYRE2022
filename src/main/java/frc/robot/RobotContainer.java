@@ -17,6 +17,7 @@ package frc.robot;
 // // [ Files ] 
 import frc.robot.commands.*;
 import frc.robot.commands.AutoSequence.BootUpShot;
+import frc.robot.commands.AutoSequence.SpinAngle;
 import frc.robot.commands.AutoSequence.SpitOut;
 import frc.robot.commands.AutoSequence.StraightAuto;
 import frc.robot.subsystems.*;
@@ -27,6 +28,7 @@ import javax.sound.sampled.Control;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -65,21 +67,42 @@ public class RobotContainer {
 	private final Intake m_intake = new Intake();
 	private static DriveTrain m_drivetrain = new DriveTrain();
 	// private final Intake m_intake = new Intake();
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<SequentialCommandGroup> m_chooser = new SendableChooser<>();
 
 	//-> Chosen autonomous command, passed to getAutonomousCommand(). 
 	//private final Autonomous m_autoCommand = new Autonomous(m_drivetrain);
 	//private final StraightAuto m_autoCommand = new StraightAuto(m_drivetrain);
 	//private final PathWeaverTest1 m_autoCommand = new PathWeaverTest1(m_drivetrain);
 	
-	private final StraightAuto stepOne = new StraightAuto(m_drivetrain);
-	private final SpitOut stepTwo = new SpitOut(m_shooter);
-	private final BootUpShot stepThree = new BootUpShot(m_shooter, m_intake);
-	private final SequentialCommandGroup m_autoCommand = new SequentialCommandGroup(stepOne, stepTwo, stepThree);
-	
+	private final StraightAuto stepOneLeft = new StraightAuto(m_drivetrain);
+	private final SpitOut stepTwoLeft = new SpitOut(m_shooter);
+	private final BootUpShot stepThreeLeft = new BootUpShot(m_shooter, m_intake);
+	private final SpinAngle stepFourLeft = new SpinAngle(m_drivetrain, "left");
+
+	private final StraightAuto stepOneRight = new StraightAuto(m_drivetrain);
+	private final SpitOut stepTwoRight = new SpitOut(m_shooter);
+	private final BootUpShot stepThreeRight = new BootUpShot(m_shooter, m_intake);
+	private final SpinAngle stepFourRight = new SpinAngle(m_drivetrain, "right");
+
+	private final StraightAuto stepOneStraight = new StraightAuto(m_drivetrain);
+	private final SpitOut stepTwoStraight = new SpitOut(m_shooter);
+	private final BootUpShot stepThreeStraight = new BootUpShot(m_shooter, m_intake);
+	private final SpinAngle stepFourStraight = new SpinAngle(m_drivetrain, "straight");
+
+	private final SequentialCommandGroup m_Left = new SequentialCommandGroup(stepOneLeft, stepTwoLeft, stepThreeLeft, stepFourLeft);
+	private final SequentialCommandGroup m_Right = new SequentialCommandGroup(stepOneRight, stepTwoRight, stepThreeRight, stepFourRight);
+	private final SequentialCommandGroup m_Straight = new SequentialCommandGroup(stepOneStraight, stepTwoStraight, stepThreeStraight, stepFourStraight);
+
 	//-> The container for the robot. Contains subsystems, OI devices, and commands.
 	public RobotContainer() {
 		m_drivetrain.setDefaultCommand(new Driving(m_drivetrain));
+		m_chooser.setDefaultOption("Robot Starts Left", m_Left);
+		m_chooser.addOption("Robot Starts Right", m_Right);
+		m_chooser.addOption("Robot Starts Straight", m_Straight);
+
+		SmartDashboard.putString("Autonomous Selector:", "");
+		SmartDashboard.putNumber("Delay For Auto", 0.0);
+		SmartDashboard.putData(m_chooser);
     	configureButtonBindings();
 	}
 
@@ -112,7 +135,7 @@ public class RobotContainer {
 
 	//-> Passes autonomous command to Robot class. 
 	public Command getAutonomousCommand() {
-		return m_autoCommand;
+		return m_chooser.getSelected();
 	}
 }
 
