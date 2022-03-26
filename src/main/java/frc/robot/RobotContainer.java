@@ -57,6 +57,7 @@ public class RobotContainer {
 	private final JoystickButton J11 = new JoystickButton(manipulatorControl, 11);
   	private final JoystickButton J12 = new JoystickButton(manipulatorControl, 12);
 
+	private final JoystickButton X1 = new JoystickButton(driverControl, 1);
 	private final JoystickButton X5 = new JoystickButton(driverControl, 5);
 	private final JoystickButton X6 = new JoystickButton(driverControl, 6);
 
@@ -129,6 +130,7 @@ public class RobotContainer {
 		J1.whileHeld(new PIDControlledShots(m_shooter, m_intake));
 		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
 
+		X1.whileHeld(new IntoIntake(m_intake, "Intake_Backward"));
 		X5.whenPressed(new DrivingPower("Negative"));
 		X6.whenPressed(new DrivingPower("Positive"));
 		

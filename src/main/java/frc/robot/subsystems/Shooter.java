@@ -11,6 +11,8 @@ import frc.robot.RobotContainer;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,13 +23,15 @@ public class Shooter extends SubsystemBase {
   private Encoder shooterEncoder = new Encoder(Constants.shooterEncoderA, Constants.shooterEncoderB);
   private double throttle = 0.8;
   private boolean upToSpeed = false;
-
+  public static UsbCamera camera;
+  
   public Shooter() {
 
     motorShoot.setInverted(true);
 
     shooterEncoder.reset();
     shooterEncoder.setDistancePerPulse(1/2048.0);
+    camera = CameraServer.startAutomaticCapture();
     
   }
 

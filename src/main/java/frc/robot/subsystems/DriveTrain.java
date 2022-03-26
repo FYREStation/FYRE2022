@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -46,6 +47,7 @@ public class DriveTrain extends SubsystemBase {
 
 	//-> Sets a series of constants on motors. 
 	public DriveTrain (){
+		//CameraServer.startAutomaticCapture();
 		left_motorA.setExpiration(expiration_dur);
 		right_motorA.setExpiration(expiration_dur);
 		differential_drive.setExpiration(expiration_dur);

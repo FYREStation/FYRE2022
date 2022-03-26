@@ -49,5 +49,8 @@ public final class Constants {
 
     // TODO: Add sensors (gyro, encoder, and cameras for example)
 
-    public static UsbCamera camera = CameraServer.startAutomaticCapture();
+    public static UsbCamera camera = new UsbCamera("camera", "0");
+    
+    //public static UsbCamera camera = CameraServer.startAutomaticCapture();
+
 }
