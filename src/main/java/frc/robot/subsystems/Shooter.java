@@ -90,6 +90,10 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
+  public double getRPMRate(){
+    return shooterEncoder.getRate();
+  }
+
   // Placeholder functions for OneRevolution
   public void spinForward(){
     motorShoot.set(ControlMode.PercentOutput, 0.90);
@@ -104,7 +108,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public void spinThrottle(){
-    //throttle = RobotContainer.manipulatorControl.getRawAxis(3) * -1;
     motorShoot.set(ControlMode.PercentOutput, throttle);
   }
 
@@ -113,9 +116,10 @@ public class Shooter extends SubsystemBase {
       throttle = newThrottle;
     }
   }
-public double getThrottle(){
-  return throttle;
-}
+  public double getThrottle(){
+    return throttle;
+  }
+
   public void spinAmount(double power){
     motorShoot.set(ControlMode.PercentOutput, power);
   }
