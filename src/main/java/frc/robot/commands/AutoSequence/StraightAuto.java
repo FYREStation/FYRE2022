@@ -47,7 +47,7 @@ public class StraightAuto extends CommandBase {
         PIDRightController.setSetpoint(-72);
         PIDRightController.setTolerance(4);
 
-        wait = SmartDashboard.getNumber("Delay For Auto", 0);
+        wait = SmartDashboard.getNumber("Delay For Auto (in ms)", 0);
         startTime = System.currentTimeMillis();
     }
 

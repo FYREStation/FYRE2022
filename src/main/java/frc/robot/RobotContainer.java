@@ -126,7 +126,7 @@ public class RobotContainer {
 
 		J4.whenPressed(new ShooterPower(m_shooter, "Shooter Decrement"));
 		
-		//J1.whileHeld(new ControlShot(m_shooter, "Shooter_Throttle"));
+		J10.whileHeld(new ControlShot(m_shooter, "Shooter_Throttle"));
 		J1.whileHeld(new PIDControlledShots(m_shooter, m_intake));
 		J2.whileHeld(new ControlShot(m_shooter, "Shooter_Backward"));
 

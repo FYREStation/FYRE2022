@@ -16,6 +16,7 @@ import frc.robot.Robot;
 // // [ Classes ]
 import frc.robot.RobotContainer;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // [ Functions ]
@@ -34,7 +35,7 @@ public class PIDControlledShots extends CommandBase {
     @Override
     public void initialize() {
         goalSpeed = convertToRPM(m_shot.getThrottle());
-        RPMController = new PIDController(0.2, 0.001, 0.02);
+        RPMController = new PIDController(0.3, 0.06, 0.01);
         RPMController.setSetpoint(goalSpeed);
         RPMController.setTolerance(2.0);
     }
@@ -43,6 +44,7 @@ public class PIDControlledShots extends CommandBase {
     @Override
     public void execute() {
         m_shot.spinAmount(RPMController.calculate(m_shot.getRPMRate()));
+        SmartDashboard.putNumber("Calculated Control PID Shot", RPMController.calculate(m_shot.getRPMRate()));
         if(RPMController.atSetpoint()){
             m_intake.run_intake_backward();
         }
@@ -52,14 +54,18 @@ public class PIDControlledShots extends CommandBase {
     //-> Kills spin function.
   	public void end(boolean interrupted) {
     	m_shot.stopSpin();
+        if(interrupted){
+            m_intake.stopIntake();
+        }
   	}
 
   	@Override
   	public boolean isFinished() {
+        
     	return false;
   	}
 
     public double convertToRPM(double throttleNum){
-        return(throttleNum * 165.0)-18.7;
+        return(throttleNum * 158.0)-0.956;
     }
 }

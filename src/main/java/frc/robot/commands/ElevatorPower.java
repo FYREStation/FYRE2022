@@ -33,11 +33,11 @@ public class ElevatorPower extends CommandBase {
 	public void execute() {
 		switch (sectionPower) {
 			case "Hook Positive":
-				m_climber.setHookPower(0.6);
+				m_climber.setHookPower(1.0);
 				m_climber.spinHook();
 				break;
 			case "Hook Negative":
-				m_climber.setHookPower(-0.6);
+				m_climber.setHookPower(-1.0);
 				m_climber.spinHook();
 				break;
 			case "Articulate Positive":
@@ -50,15 +50,16 @@ public class ElevatorPower extends CommandBase {
 				break;
 			case "Elevator Positive":
 				if(!m_climber.getElevatorLimit()){
-					m_climber.setElevatorPower(-0.4);
+					m_climber.setElevatorPower(-0.5);
 					m_climber.spinElevator();
 				}
 				break;
 			case "Elevator Negative":
-				m_climber.setElevatorPower(0.4);
+				m_climber.setElevatorPower(0.5);
 				m_climber.spinElevator();
 				break;
 			default:
+
 				m_climber.stopEverything();
 				break;
 		}
