@@ -27,7 +27,9 @@ public class Autonomous extends CommandBase {
     }
 
     @Override
-    public void initialize() {}
+    public void initialize() {
+        System.out.println("Bazinga");
+    }
 
     @Override   
     public void execute() { 

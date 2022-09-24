@@ -26,7 +26,9 @@ public class ElevatorPower extends CommandBase {
 	}
 
 	@Override
-	public void initialize() {}
+	public void initialize() {
+		System.out.println("This is a funny print lmao");
+	}
 
 	//-> Switch statement for selecting power and functions for Climber command. 
 	@Override
