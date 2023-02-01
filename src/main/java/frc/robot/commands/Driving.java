@@ -1,78 +1,78 @@
-/*
-    [ commands / Driving.java ]
-	Established framework for 
-	driving system of the robot. 
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 
-*/ 
-
-// [ Package ]
 package frc.robot.commands;
 
-// [ Imports ]
-// // [ Files ]
-import frc.robot.Constants;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.RobotContainer;
-// // [ Classes ]
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveTrain;
 
-// [ Functions ]
+/** Handler for most events involving driving and chassis-motor manipulation. */
 public class Driving extends CommandBase {
-	private DriveTrain drive_train;
-	private double move_speed, rot_speed;
+    // Initialize our variables for controlling drivetrain.
+    private DriveTrain driveTrain;
+    private double movementSpeed;
+    private double rotationalSpeed;
 
-	private double y_left, x_right;
-	// private double x_left, y_right //-> Unused variables.
+    // Initialize our speed variables for controlling motor speeds.
+    private double horizontal;
+    private double vertical;
 
-	public Driving(DriveTrain m_drivetrain) {
-		drive_train = m_drivetrain;
-		addRequirements(drive_train);
+    /**
+     * Initialize our driving commands through our DriveTrain subsystem.
+
+     * @param driveTrain The instance of the DriveTrain which is in line with the controller. 
+     */
+    public Driving(DriveTrain driveTrain) {
+        this.driveTrain = driveTrain; 
+        addRequirements(this.driveTrain); 
     }
 
-	@Override
-	public void initialize() {} 
+    /** 
+     * Apply the displacement of the controller sticks and apply it to our drivetrain.
+     */
+    @Override 
+    public void execute() {
+        // Get the current position of the joystick axis.
+        // TODO: switch to XboxController. 
 
-	@Override
-	public void execute() {
-		//-> Grabs orientation of XboxController joysticks. 
-	 	y_left = -RobotContainer.driverControl.getLeftY();
-		x_right = RobotContainer.driverControl.getRightX();
+        horizontal = RobotContainer.manipulatorControl.getX();
+        vertical = -RobotContainer.manipulatorControl.getY(); 
 
-		/* x_left = RobotContainer.driverControl.getLeftX();
-		   y_right = RobotContainer.driverControl.getRightY(); */ //-> Possible axes for edited controller settings. 
+        System.out.println(horizontal + " : horizontal, " + vertical + " : vertical"); 
 
-		//-> Checks if robot is in Tank mode; sets new movement variables accordingly. 
-		if (Constants.isTank) {
-			move_speed = y_left;	
-		} else {
-			move_speed = y_left;
-		}
-		rot_speed = -x_right;
-	
-		rot_speed = deadband(rot_speed); 
-		move_speed = deadband(move_speed);
-	
-		//-> Creates new power variables and applies them to tankDrive method, thus moving robot. 
-		double leftPower = -(rot_speed - move_speed);
-		double rightPower = -(rot_speed + move_speed);
+        // Reverse the movement speed if the robot is in tank drive.
+        movementSpeed *= vertical * (Constants.IS_TANK ? -1 : 1);
 
-		drive_train.tankDrive(Constants.throttle * leftPower, Constants.throttle * rightPower);
-		// drive_train.arcadeDrive(Constants.throttle * x_right * Math.abs(x_right), Constants.throttle * y_left * Math.abs(y_left)); //-> Unused arcade drive alternative.
-	}
+        // Set the rotational speed to the x displacement.
+        rotationalSpeed = horizontal;
 
-	@Override
-	public boolean isFinished() {
-		return false;
-	}
+        // Apply a deadband to the speed modifiers if they are negligible. 
+        double[] speeds = new double[]{ movementSpeed, rotationalSpeed };
+        speeds = deadband(speeds);
 
-	@Override
-	public void end(boolean interrupted) {}
+        // Calculates the power to apply to each set of motors. 
+        double leftPower = -(rotationalSpeed - movementSpeed) * Constants.THROTTLE;
+        double rightPower = -(rotationalSpeed + movementSpeed) * Constants.THROTTLE;
 
-	//-> Sets values to 0 if it falls in specific threshold. 
-	public double deadband(double value) {
-		if (value < 0.2 && value > -0.2) {
-			return 0.0;
-		}
-		return value;
-	}
+        // Runs each set of motors based on their calculated power levels. 
+        driveTrain.arcadeDrive(leftPower, rightPower);
+    }
+
+    /**
+     * Checks if the displacement of each axis is sufficient enough for movement.
+
+     * @param speeds - An array of speeds to compare to the deadband constant.
+     */
+    public double[] deadband(double[] speeds) { 
+        for (int i = 0; i < speeds.length; i++) {
+            if (Math.abs(speeds[i]) < Constants.DEADBAND) {
+                speeds[i] = 0.0;
+            }
+        }
+
+        return speeds;
+    }
 }
